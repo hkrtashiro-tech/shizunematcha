@@ -1,0 +1,1707 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shizune Matcha Amazon運用分析レポート</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', 'メイリオ', 'Hiragino Sans', 'Noto Sans JP', sans-serif;
+            background: linear-gradient(135deg, #f5f7fa 0%, #f0ede5 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #6B8E4E 0%, #5a7a42 100%);
+            color: white;
+            padding: 60px 40px;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.8em;
+            margin-bottom: 10px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+
+        header .subtitle {
+            font-size: 1.1em;
+            opacity: 0.95;
+            margin-bottom: 5px;
+        }
+
+        header .date-range {
+            font-size: 0.95em;
+            opacity: 0.9;
+            font-weight: 300;
+        }
+
+        main {
+            padding: 50px 40px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #e8e8e8;
+            border-radius: 10px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: box-shadow 0.3s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+        }
+
+        .card h2 {
+            color: #6B8E4E;
+            font-size: 1.8em;
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #6B8E4E;
+            font-weight: 700;
+        }
+
+        .card h3 {
+            color: #5a7a42;
+            font-size: 1.3em;
+            margin-top: 25px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .metric-box {
+            background: linear-gradient(135deg, #f8f9fa 0%, #f0f2f5 100%);
+            padding: 25px;
+            border-radius: 8px;
+            border-left: 4px solid #6B8E4E;
+            text-align: center;
+        }
+
+        .metric-box.critical {
+            border-left-color: #DC3545;
+            background: linear-gradient(135deg, #ffe5e5 0%, #fff0f0 100%);
+        }
+
+        .metric-box label {
+            display: block;
+            color: #666;
+            font-size: 0.9em;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .metric-box .value {
+            font-size: 2.2em;
+            font-weight: 700;
+            color: #6B8E4E;
+        }
+
+        .metric-box.critical .value {
+            color: #DC3545;
+        }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            margin: 30px 0;
+        }
+
+        .chart-container.small {
+            height: 300px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            font-size: 0.95em;
+        }
+
+        table thead {
+            background: #6B8E4E;
+            color: white;
+        }
+
+        table th {
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            border: none;
+        }
+
+        table td {
+            padding: 12px 15px;
+            border: none;
+            border-bottom: 1px solid #e8e8e8;
+        }
+
+        table tbody tr:nth-child(even) {
+            background: #f9f9f9;
+        }
+
+        table tbody tr:hover {
+            background: #f0f5f0;
+        }
+
+        .severity-badge {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 600;
+            margin-right: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .severity-badge.critical {
+            background: #DC3545;
+            color: white;
+        }
+
+        .severity-badge.high {
+            background: #FD7E14;
+            color: white;
+        }
+
+        .severity-badge.medium {
+            background: #FFC107;
+            color: #333;
+        }
+
+        .bottleneck-item {
+            background: #f9f9f9;
+            border-left: 4px solid #6B8E4E;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 6px;
+        }
+
+        .bottleneck-item.critical {
+            border-left-color: #DC3545;
+            background: #fff5f5;
+        }
+
+        .bottleneck-item.high {
+            border-left-color: #FD7E14;
+            background: #fffaf5;
+        }
+
+        .bottleneck-item.medium {
+            border-left-color: #FFC107;
+            background: #fffdf5;
+        }
+
+        .bottleneck-item strong {
+            display: block;
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 1.05em;
+        }
+
+        .action-plan {
+            background: #f0f5f0;
+            border: 2px solid #6B8E4E;
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 20px;
+        }
+
+        .action-plan h4 {
+            color: #6B8E4E;
+            font-size: 1.2em;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .action-plan ul {
+            list-style-position: inside;
+            margin-left: 0;
+        }
+
+        .action-plan li {
+            margin-bottom: 10px;
+            line-height: 1.6;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        @media (max-width: 1000px) {
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .note {
+            background: #f8f9fa;
+            border-left: 4px solid #6B8E4E;
+            padding: 15px 20px;
+            border-radius: 4px;
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        footer {
+            background: #f0f2f5;
+            border-top: 1px solid #e8e8e8;
+            padding: 30px 40px;
+            text-align: center;
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .footer-date {
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .footer-source {
+            color: #999;
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                margin: 0;
+                border-radius: 0;
+            }
+
+            header {
+                padding: 40px;
+            }
+
+            main {
+                padding: 40px;
+            }
+
+            .card {
+                page-break-inside: avoid;
+                box-shadow: none;
+                border: 1px solid #ddd;
+            }
+
+            .chart-container {
+                page-break-inside: avoid;
+            }
+
+            .summary-grid {
+                page-break-inside: avoid;
+            }
+        }
+
+        .highlight {
+            background: #fff3cd;
+            padding: 20px;
+            border-radius: 6px;
+            border-left: 4px solid #FFC107;
+            margin: 20px 0;
+        }
+
+        .success {
+            color: #28a745;
+            font-weight: 600;
+        }
+
+        .danger {
+            color: #DC3545;
+            font-weight: 600;
+        }
+
+        .warning {
+            color: #FD7E14;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🍵 Shizune Matcha</h1>
+            <p class="subtitle">Amazon運用分析レポート</p>
+            <p class="date-range">分析期間：2025年12月〜2026年4月12日</p>
+        </header>
+
+        <main>
+            <!-- セクション1: エグゼクティブサマリー -->
+            <section class="card">
+                <h2>1. エグゼクティブサマリー</h2>
+                <p>本レポートは、Shizune Matchaの過去4ヶ月間のAmazon Seller CentralおよびAmazon Adsのデータに基づいた運用分析です。現在、事業は極めて危機的な状況にあります。</p>
+
+                <div class="summary-grid" style="margin-top: 30px;">
+                    <div class="metric-box critical">
+                        <label>3月総売上</label>
+                        <div class="value">$754.34</div>
+                        <p style="margin-top: 5px; font-size: 0.9em; color: #666;">26ユニット</p>
+                    </div>
+                    <div class="metric-box critical">
+                        <label>3月広告支出</label>
+                        <div class="value">$850.15</div>
+                        <p style="margin-top: 5px; font-size: 0.9em; color: #666;">純広告損失</p>
+                    </div>
+                    <div class="metric-box critical">
+                        <label>3月ACOS</label>
+                        <div class="value">161.7%</div>
+                        <p style="margin-top: 5px; font-size: 0.9em; color: #666;">理想：15-20%</p>
+                    </div>
+                    <div class="metric-box critical">
+                        <label>4月ACOS</label>
+                        <div class="value">225.8%</div>
+                        <p style="margin-top: 5px; font-size: 0.9em; color: #666;">さらに悪化</p>
+                    </div>
+                    <div class="metric-box critical">
+                        <label>トラフィック低下</label>
+                        <div class="value">-71%</div>
+                        <p style="margin-top: 5px; font-size: 0.9em; color: #666;">12月→3月</p>
+                    </div>
+                    <div class="metric-box critical">
+                        <label>3月TACoS</label>
+                        <div class="value">112.7%</div>
+                        <p style="margin-top: 5px; font-size: 0.9em; color: #666;">総広告売上費用率</p>
+                    </div>
+                </div>
+
+                <div class="highlight" style="margin-top: 30px;">
+                    <strong style="display: block; margin-bottom: 10px; font-size: 1.1em;">重大な状況：</strong>
+                    <ul style="margin-left: 20px;">
+                        <li><span class="danger">広告費が売上を大幅に上回っている</span>：3月に$850の広告費で売上$754、4月も$479で売上$289</li>
+                        <li><span class="danger">トラフィックが71%激減</span>：12月の42.3セッション/日から3月の12.0セッション/日へ</li>
+                        <li><span class="danger">オーガニック流入が壊滅状態</span>：検索順位低下、リスティング最適化不足が原因と推測</li>
+                        <li><span class="danger">"General"キャンペーン停止後の代替戦略がない</span>：3月15日を境に売上が半減</li>
+                        <li><span class="warning">SB/SDキャンペーンが未実施</span>：広告チャネルが制限されている</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- セクション2: 売上トレンド -->
+            <section class="card">
+                <h2>2. 売上トレンド（日次平均）</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>期間</th>
+                            <th>1日あたり売上</th>
+                            <th>1日あたりユニット数</th>
+                            <th>1日あたりセッション数</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: 600;">12月1-10日</td>
+                            <td>$51.29</td>
+                            <td>1.50</td>
+                            <td>42.3</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">2月1-10日</td>
+                            <td>$16.20</td>
+                            <td>0.40</td>
+                            <td>14.5</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">3月1-15日</td>
+                            <td>$32.50</td>
+                            <td>1.07</td>
+                            <td>11.8</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">3月16-31日</td>
+                            <td>$16.68</td>
+                            <td>0.63</td>
+                            <td>12.2</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">4月1-12日</td>
+                            <td>$24.08</td>
+                            <td>0.83</td>
+                            <td>14.5</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="chart-container">
+                    <canvas id="trendChart"></canvas>
+                </div>
+
+                <p style="margin-top: 20px; color: #666;">グラフの解釈：赤線で示された売上は12月から継続して低迷し、特に2月から3月にかけてさらに悪化しました。"General"キャンペーン停止（3月15日）の影響で、後半は日次売上が約$16に落ち込みました。</p>
+            </section>
+
+            <!-- セクション3: 3月キャンペーン分析 -->
+            <section class="card">
+                <h2>3. 広告キャンペーン分析（2026年3月全体）</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>キャンペーン</th>
+                            <th>支出</th>
+                            <th>インプ</th>
+                            <th>クリック</th>
+                            <th>CTR</th>
+                            <th>CPC</th>
+                            <th>売上</th>
+                            <th>コンバージョン</th>
+                            <th>ACOS</th>
+                            <th>ROAS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: 600;">Brand</td>
+                            <td>$4.59</td>
+                            <td>19</td>
+                            <td>3</td>
+                            <td>15.79%</td>
+                            <td>$1.53</td>
+                            <td>$25.59</td>
+                            <td>1</td>
+                            <td><span class="success">17.9%</span></td>
+                            <td>5.58</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">General</td>
+                            <td>$297.10</td>
+                            <td>17,487</td>
+                            <td>50</td>
+                            <td>0.286%</td>
+                            <td>$5.94</td>
+                            <td>$222.13</td>
+                            <td>7</td>
+                            <td><span class="warning">133.8%</span></td>
+                            <td>0.75</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">Core Exact</td>
+                            <td>$519.90</td>
+                            <td>48,493</td>
+                            <td>120</td>
+                            <td>0.247%</td>
+                            <td>$4.33</td>
+                            <td>$277.90</td>
+                            <td>10</td>
+                            <td><span class="danger">187.1%</span></td>
+                            <td>0.53</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">Exploration</td>
+                            <td>$11.05</td>
+                            <td>3,803</td>
+                            <td>10</td>
+                            <td>0.263%</td>
+                            <td>$1.11</td>
+                            <td>$0.00</td>
+                            <td>0</td>
+                            <td><span class="danger">∞</span></td>
+                            <td>0.00</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">Core Phrase</td>
+                            <td>$17.51</td>
+                            <td>1,341</td>
+                            <td>12</td>
+                            <td>0.895%</td>
+                            <td>$1.46</td>
+                            <td>$0.00</td>
+                            <td>0</td>
+                            <td><span class="danger">∞</span></td>
+                            <td>0.00</td>
+                        </tr>
+                        <tr style="background: #f0f5f0; font-weight: 600;">
+                            <td>合計</td>
+                            <td>$850.15</td>
+                            <td>71,143</td>
+                            <td>195</td>
+                            <td>0.274%</td>
+                            <td>$4.36</td>
+                            <td>$525.62</td>
+                            <td>18</td>
+                            <td class="danger">161.7%</td>
+                            <td>0.62</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="two-column" style="margin-top: 30px;">
+                    <div class="chart-container">
+                        <canvas id="campaignSpendChart"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="campaignROASChart"></canvas>
+                    </div>
+                </div>
+
+                <div class="highlight" style="margin-top: 20px;">
+                    <strong>主な問題点：</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><span class="success">✓ Brand キャンペーン</span>は健全な運用（ACOS 17.9%, ROAS 5.58）で唯一の成功例</li>
+                        <li><span class="danger">✗ Core Exact キャンペーン</span>：予算の61%（$519.90）を消費しながら ACOS 187.1%, ROAS 0.53 と最悪な成績</li>
+                        <li><span class="danger">✗ General キャンペーン</span>：ACOS 133.8% で赤字運用、3月15日停止後も復帰なし</li>
+                        <li><span class="danger">✗ Exploration と Core Phrase</span>：合計$28.56の支出でコンバージョンゼロ、即座に停止すべき</li>
+                        <li><span class="warning">CPC $4.36 は非常に高い</span>：健康食品カテゴリの相場は $0.50-2.00</li>
+                        <li><span class="warning">CTR 0.274% は平均値以下</span>：Amazon SP平均 0.3-0.5% 未満。商品画像・タイトル・価格競争力の欠如</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- セクション4: 4月キャンペーン分析 -->
+            <section class="card">
+                <h2>4. 広告キャンペーン分析（2026年4月1-12日）</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>キャンペーン</th>
+                            <th>支出</th>
+                            <th>インプ</th>
+                            <th>クリック</th>
+                            <th>CTR</th>
+                            <th>CPC</th>
+                            <th>売上</th>
+                            <th>コンバージョン</th>
+                            <th>ACOS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: 600;">Core Exact</td>
+                            <td>$459.63</td>
+                            <td>53,258</td>
+                            <td>97</td>
+                            <td>0.182%</td>
+                            <td>$4.74</td>
+                            <td>$186.54</td>
+                            <td>6</td>
+                            <td><span class="danger">246.5%</span></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">Brand</td>
+                            <td>$5.42</td>
+                            <td>22</td>
+                            <td>4</td>
+                            <td>18.18%</td>
+                            <td>$1.36</td>
+                            <td>$25.59</td>
+                            <td>1</td>
+                            <td><span class="success">21.2%</span></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">Exploration</td>
+                            <td>$6.96</td>
+                            <td>3,219</td>
+                            <td>6</td>
+                            <td>0.186%</td>
+                            <td>$1.16</td>
+                            <td>$0.00</td>
+                            <td>0</td>
+                            <td><span class="danger">∞</span></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">Core Phrase</td>
+                            <td>$7.07</td>
+                            <td>1,099</td>
+                            <td>3</td>
+                            <td>0.273%</td>
+                            <td>$2.36</td>
+                            <td>$0.00</td>
+                            <td>0</td>
+                            <td><span class="danger">∞</span></td>
+                        </tr>
+                        <tr style="background: #f0f5f0; font-weight: 600;">
+                            <td>合計</td>
+                            <td>$479.08</td>
+                            <td>57,598</td>
+                            <td>110</td>
+                            <td>0.191%</td>
+                            <td>$4.36</td>
+                            <td>$212.13</td>
+                            <td>7</td>
+                            <td class="danger">225.8%</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="note">
+                    <strong>重要な変化：</strong>"General" キャンペーンは3月15日停止後、4月時点でも復帰していません。代替戦略がないため、広告流入全体が更に悪化し、ACOS が 161.7% から 225.8% へ悪化しました。Core Exact は依然として予算の96%を占めるにもかかわらず、ACOS が187% から246% へ悪化し、事態は深刻化しています。
+                </div>
+
+                <h3 style="margin-top: 30px; color: #DC3545;">予算推移の比較（General停止前後）</h3>
+                <table style="margin-top: 15px;">
+                    <thead>
+                        <tr>
+                            <th>キャンペーン</th>
+                            <th>3月前半（予算）</th>
+                            <th>4月（予算）</th>
+                            <th>変化</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: 600;">General</td>
+                            <td>$360</td>
+                            <td class="danger">停止</td>
+                            <td>—</td>
+                        </tr>
+                        <tr style="background: #fff5f5;">
+                            <td style="font-weight: 600;">Core Exact</td>
+                            <td>$320</td>
+                            <td class="danger">$480</td>
+                            <td class="danger">+50% 増額</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">Brand</td>
+                            <td>$150</td>
+                            <td class="danger">$100</td>
+                            <td class="danger">-33% 減額（唯一の黒字キャンペーンなのに）</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">Exploration</td>
+                            <td>$40</td>
+                            <td>$60</td>
+                            <td>+50%</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">Core Phrase</td>
+                            <td>$40</td>
+                            <td>$60</td>
+                            <td>+50%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+
+            <!-- セクション4.5: Core Exact キーワード深掘り分析 -->
+            <section class="card">
+                <h2 style="color: #DC3545;">&#x1F50D; 根本原因分析：Core Exact キーワード検索用語レポート</h2>
+                <p style="margin-bottom: 15px; color: #666;">期間：2026年3月1日〜4月13日 ｜ 広告グループ：High ROAS</p>
+
+                <div style="background: #fff5f5; border: 2px solid #DC3545; border-radius: 8px; padding: 20px; margin-bottom: 20px;">
+                    <strong style="color: #DC3545; font-size: 1.1em;">結論：ACOS暴走の根本原因は「matcha powder」完全一致の入札設定ミス</strong>
+                    <p style="margin-top: 10px;">Core Exact の広告費$989.75のうち<strong>99%（$979.95）</strong>が「matcha powder」完全一致に集中。このKW自体はGeneralキャンペーン時代には効率の良いKWでしたが、General停止時の入札額引き上げにより経済性が崩壊しています。</p>
+                </div>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>検索用語</th>
+                            <th>マッチタイプ</th>
+                            <th>入札額</th>
+                            <th>合計費用</th>
+                            <th>商品購入数</th>
+                            <th>売上</th>
+                            <th>ROAS</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: #fff5f5;">
+                            <td style="font-weight: 600;">matcha powder</td>
+                            <td>完全一致</td>
+                            <td>$3.50</td>
+                            <td class="danger">$979.95</td>
+                            <td>15</td>
+                            <td>$438.85</td>
+                            <td class="danger">0.45</td>
+                        </tr>
+                        <tr>
+                            <td>japanese matcha</td>
+                            <td>完全一致</td>
+                            <td>$2.17</td>
+                            <td>$2.17</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>japanese matcha powder</td>
+                            <td>完全一致</td>
+                            <td>$3.00</td>
+                            <td>$3.88</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                        </tr>
+                        <tr>
+                            <td>japanese matcha tea</td>
+                            <td>完全一致</td>
+                            <td>$2.50</td>
+                            <td>$3.75</td>
+                            <td>—</td>
+                            <td>—</td>
+                            <td>—</td>
+                        </tr>
+                        <tr style="font-weight: 600; background: #f5f5f5;">
+                            <td>合計: 4 KW</td>
+                            <td></td>
+                            <td></td>
+                            <td>$989.75</td>
+                            <td>15</td>
+                            <td>$438.85</td>
+                            <td>0.44</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="margin-top: 30px; color: #5a7a42;">損益分岐分析：「matcha powder」の適正入札額</h3>
+
+                <div class="summary-grid" style="margin-top: 15px;">
+                    <div class="metric-box">
+                        <label>平均注文額（AOV）</label>
+                        <div class="value" style="font-size: 1.5em;">$29.26</div>
+                        <p style="margin-top: 5px; font-size: 0.9em; color: #666;">$438.85 ÷ 15注文</p>
+                    </div>
+                    <div class="metric-box">
+                        <label>コンバージョン率（CVR）</label>
+                        <div class="value" style="font-size: 1.5em;">7.0%</div>
+                        <p style="margin-top: 5px; font-size: 0.9em; color: #666;">15注文 ÷ 推定214クリック</p>
+                    </div>
+                    <div class="metric-box critical">
+                        <label>実際のCPC</label>
+                        <div class="value" style="font-size: 1.5em;">$4.58</div>
+                        <p style="margin-top: 5px; font-size: 0.9em; color: #666;">入札$3.50を超過（ダイナミックビッディング）</p>
+                    </div>
+                </div>
+
+                <table style="margin-top: 20px;">
+                    <thead>
+                        <tr>
+                            <th>目標ACOS</th>
+                            <th>適正CPC上限</th>
+                            <th>推奨入札額</th>
+                            <th>現在との差</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: 600;">ACOS 30%（健全）</td>
+                            <td class="success">$0.61</td>
+                            <td>$0.50 - $0.80</td>
+                            <td class="danger">現在の1/7以下</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">ACOS 50%（許容範囲）</td>
+                            <td>$1.02</td>
+                            <td>$0.80 - $1.20</td>
+                            <td class="danger">現在の1/4以下</td>
+                        </tr>
+                        <tr style="background: #fff5f5;">
+                            <td style="font-weight: 600;">ACOS 100%（損益分岐点）</td>
+                            <td class="danger">$2.05</td>
+                            <td>$1.50 - $2.00</td>
+                            <td class="danger">現在CPC $4.58はこの2.2倍</td>
+                        </tr>
+                        <tr style="background: #ffe5e5;">
+                            <td style="font-weight: 600;">現在の状態（ACOS 223%）</td>
+                            <td class="danger">$4.58（実績CPC）</td>
+                            <td class="danger">$3.50（設定入札）</td>
+                            <td class="danger">$1あたり$1.23の赤字</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div style="background: #f0f5f0; border-left: 4px solid #6B8E4E; padding: 20px; margin-top: 25px; border-radius: 6px;">
+                    <strong style="color: #5a7a42;">なぜGeneralでは効率が良かったのか？</strong>
+                    <p style="margin-top: 10px;">「matcha powder」完全一致はGeneral キャンペーン（予算$360、複数KW共有）の中の1つとして運用されていた際は、他のKWとの予算競争が自然なブレーキとなっていました。General停止後に入札額を引き上げてCore Exact（予算$320→$480）に集中させた結果：</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>入札額引き上げ</strong> → CPC が損益分岐の2倍超に高騰</li>
+                        <li><strong>ダイナミックビッディング（上下）</strong> → 入札$3.50が実際には$4.58まで膨張</li>
+                        <li><strong>予算独占</strong> → 1KWが$480予算を自由に消化、Amazonが質の低いプレースメントにも配信</li>
+                    </ul>
+                </div>
+
+                <div style="background: #fff5f5; border-left: 4px solid #DC3545; padding: 20px; margin-top: 20px; border-radius: 6px;">
+                    <strong style="color: #DC3545;">即日実行すべき修正：</strong>
+                    <ol style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>入札額：</strong>$3.50 → <strong>$1.00〜$1.50</strong> に引き下げ</li>
+                        <li><strong>ダイナミックビッディング：</strong>「上下」→ <strong>「ダウンのみ」</strong>に変更</li>
+                        <li><strong>他3KW（japanese matcha系）：</strong>購入実績ゼロのため一旦停止</li>
+                        <li><strong>上記変更後、1〜2週間データを蓄積してからCPCを微調整</strong></li>
+                    </ol>
+                    <p style="margin-top: 15px;"><strong>期待効果：</strong>CPC $4.58 → $1.00〜1.50圏へ低下。ACOS 223% → 70〜100%圏へ改善見込み。月間広告費の大幅削減。</p>
+                </div>
+            </section>
+
+            <!-- セクション5: TACoS推移 -->
+            <section class="card">
+                <h2>5. TACoS推移（Total Advertising Cost of Sales）</h2>
+
+                <div class="summary-grid">
+                    <div class="metric-box critical">
+                        <label>3月TACoS</label>
+                        <div class="value">112.7%</div>
+                        <p style="margin-top: 5px; font-size: 0.9em; color: #666;">売上 < 広告費</p>
+                    </div>
+                    <div class="metric-box critical">
+                        <label>4月TACoS</label>
+                        <div class="value">165.8%</div>
+                        <p style="margin-top: 5px; font-size: 0.9em; color: #666;">さらに深刻化</p>
+                    </div>
+                    <div class="metric-box">
+                        <label>理想的なTACoS</label>
+                        <div class="value" style="color: #28a745;">10-15%</div>
+                        <p style="margin-top: 5px; font-size: 0.9em; color: #666;">Amazon推奨</p>
+                    </div>
+                </div>
+
+                <table style="margin-top: 30px;">
+                    <thead>
+                        <tr>
+                            <th>期間</th>
+                            <th>総広告支出</th>
+                            <th>総売上</th>
+                            <th>TACoS</th>
+                            <th>評価</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: 600;">3月（全体）</td>
+                            <td>$850.15</td>
+                            <td>$754.34</td>
+                            <td class="danger">112.7%</td>
+                            <td><span class="danger">✗ 売上より広告費が多い</span></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">4月1-12日</td>
+                            <td>$479.08</td>
+                            <td>$288.90</td>
+                            <td class="danger">165.8%</td>
+                            <td><span class="danger">✗ 状況がさらに悪化</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="chart-container" style="margin-top: 30px;">
+                    <canvas id="tacosChart"></canvas>
+                </div>
+
+                <div class="highlight" style="margin-top: 20px;">
+                    <strong>TACoSの説明：</strong>
+                    <p style="margin-top: 10px;">TACoS（総広告売上費用率）は、売上全体に対する総広告費の比率です。例えば3月のTACoS 112.7% は、$1の売上を得るために平均 $1.13 の広告費を投下していることを意味します。</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><span class="success">10-15%：</span>Amazon推奨の健全な水準。利益が確保できる</li>
+                        <li><span class="warning">15-30%：</span>改善が必要だが、運用継続が可能</li>
+                        <li><span class="danger">100%超え：</span>売上より広告費が多く、赤字状態。即座の対策が必須</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><span class="danger">現在の 112-166% は、販売するほど赤字が拡大する構造です。</span>3月に$850の広告費で$754の売上、4月に$479の広告費で$289の売上という事実が、この指標の深刻さを物語っています。</p>
+                </div>
+            </section>
+
+            <!-- セクション6: 広告依存度分析 -->
+            <section class="card">
+                <h2>6. 広告依存度分析</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>期間</th>
+                            <th>広告経由売上</th>
+                            <th>広告依存度</th>
+                            <th>オーガニック売上</th>
+                            <th>オーガニック比率</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: 600;">3月全体</td>
+                            <td>$525.62</td>
+                            <td><span class="danger">69.7%</span></td>
+                            <td>$228.72</td>
+                            <td>30.3%</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">4月1-12日</td>
+                            <td>$212.13</td>
+                            <td><span class="danger">73.4%</span></td>
+                            <td>$76.77</td>
+                            <td>26.6%</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="two-column" style="margin-top: 30px;">
+                    <div class="chart-container">
+                        <canvas id="dependencyChartMarch"></canvas>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="dependencyChartApril"></canvas>
+                    </div>
+                </div>
+
+                <div class="highlight" style="margin-top: 20px;">
+                    <strong>広告依存度の意味：</strong>
+                    <p style="margin-top: 10px;">現在、売上の70%以上が有料広告経由です。オーガニック流入が30%未満という状況は極めて不健全です。</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><span class="danger">3月：広告経由69.7%、オーガニック30.3%</span></li>
+                        <li><span class="danger">4月：広告経由73.4%、オーガニック26.6%（さらに悪化）</span></li>
+                        <li><span class="warning">健全な状態：</span>オーガニック50%以上が理想的</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><span class="danger">オーガニック比率が低下している</span>のは、検索順位低下やリスティング最適化不足を示唆しています。同時に、広告費が増加しても売上が増えていないという悪循環に陥っています。</p>
+                </div>
+            </section>
+
+            <!-- セクション7: トラフィック分析 -->
+            <section class="card">
+                <h2>7. トラフィック分析</h2>
+
+                <table>
+                    <thead>
+                        <tr>
+                            <th>期間</th>
+                            <th>平均セッション数/日</th>
+                            <th>平均ページビュー/日</th>
+                            <th>Buy Box %</th>
+                            <th>トレンド</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: 600;">12月1-10日</td>
+                            <td class="success">42.3</td>
+                            <td>57.0</td>
+                            <td>98-100%</td>
+                            <td>基準値</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">2月1-10日</td>
+                            <td>14.5</td>
+                            <td>18.4</td>
+                            <td>68-78% ⚠️</td>
+                            <td>低下開始</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">3月全体</td>
+                            <td class="danger">12.0</td>
+                            <td>17.5</td>
+                            <td>95-100%</td>
+                            <td><span class="danger">-71.6%</span></td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">4月1-12日</td>
+                            <td>14.5</td>
+                            <td>18.3</td>
+                            <td>96-100%</td>
+                            <td>底打ち？</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="chart-container" style="margin-top: 30px;">
+                    <canvas id="trafficChart"></canvas>
+                </div>
+
+                <div class="highlight" style="margin-top: 20px;">
+                    <strong>トラフィック激減の分析：</strong>
+                    <p style="margin-top: 10px;">セッション数が12月の42.3から3月の12.0へ71%低下しました。これはオーガニック流入（自然検索）の壊滅を意味します。</p>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>12月基準値：</strong>1日42.3セッション、ページビュー57、Buy Box 98-100%（健全状態）</li>
+                        <li><strong>2月：</strong>セッション14.5（65%低下）、Buy Box が68-78%へ低下⚠️（在庫問題か価格競争力の喪失か）</li>
+                        <li><strong>3月：</strong>セッション12.0（さらに低下）、ただしBuy Boxは回復し95-100%に戻る</li>
+                        <li><strong>4月：</strong>セッション14.5（やや回復傾向だが、依然67%以上低い）</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><span class="danger">Buy Box喪失（2月）</span>は「価格競争力の喪失」を示唆しており、その後セッション数が回復していないことは「検索順位低下」が原因と推測されます。</p>
+                </div>
+            </section>
+
+            <!-- セクション8: ボトルネック診断 -->
+            <section class="card">
+                <h2>8. ボトルネック診断（重要度順）</h2>
+
+                <div class="bottleneck-item critical">
+                    <strong><span class="severity-badge critical">CRITICAL</span>トラフィックの激減（-71%）</strong>
+                    <p style="margin-top: 10px;">12月の42.3セッション/日から3月の12.0セッション/日への低下。これは有機検索流入（オーガニック）の壊滅的な縮小を示しています。</p>
+                    <ul style="margin-left: 20px; margin-top: 8px;">
+                        <li><strong>原因推定：</strong>検索キーワード「matcha」「抹茶」などでの検索順位低下。AmazonのA9検索エンジンは、セッション数・売上数・コンバージョン率に基づいてランキングを決定するため、負のスパイラルが発生。</li>
+                        <li><strong>季節性の影響：</strong>12月年末需要 → 1月正月 → 2月需要激減（一般的パターン）と重なった</li>
+                        <li><strong>リスティング品質：</strong>メイン画像、タイトル、A+コンテンツの改善が未実施と推測</li>
+                    </ul>
+                </div>
+
+                <div class="bottleneck-item critical">
+                    <strong><span class="severity-badge critical">CRITICAL</span>広告ACOS暴走（161.7%→225.8%） — 根本原因特定済み</strong>
+                    <p style="margin-top: 10px;">売上$1あたり平均$1.62〜2.26の広告費を投下している状態。<strong>原因はCore Exact内「matcha powder」完全一致の入札額設定ミス</strong>です。</p>
+                    <ul style="margin-left: 20px; margin-top: 8px;">
+                        <li><strong>根本原因：</strong>General停止時に「matcha powder」の入札額を$3.50に引き上げ → ダイナミックビッディング（上下）で実際のCPCが$4.58に膨張 → 損益分岐CPC $2.05の2.2倍で運用</li>
+                        <li><strong>背景：</strong>Generalでは複数KWと予算$360を共有し自然なブレーキが効いていた。Core Exactに移管後、予算$320→$480を1KWが独占消化する構造に</li>
+                        <li><strong>被害額：</strong>3/1〜4/13の約44日間で$989.75消化し$438.85の売上 → <span style="color:#DC3545; font-weight:bold;">$541.10の純損失</span></li>
+                        <li><strong>CTR 0.274% は業界平均以下：</strong>広告がインプレッションされても、ほぼクリックされていない。商品画像・価格・タイトルの競争力改善も並行して必要</li>
+                    </ul>
+                </div>
+
+                <div class="bottleneck-item critical">
+                    <strong><span class="severity-badge critical">CRITICAL</span>TACoSが100%超え（売上＜広告費）</strong>
+                    <p style="margin-top: 10px;">販売するほど赤字が拡大する構造に陥っています。</p>
+                    <ul style="margin-left: 20px; margin-top: 8px;">
+                        <li><strong>3月：</strong>総売上$754.34 < 総広告費$850.15 = 純損失$95.81</li>
+                        <li><strong>4月1-12：</strong>総売上$288.90 < 総広告費$479.08 = 純損失$190.18</li>
+                        <li><strong>単純計算：</strong>現在の広告キャンペーンを続ければ続けるほど、赤字が増加します。この状態は「支出削減」しかありません。</li>
+                    </ul>
+                </div>
+
+                <div class="bottleneck-item high">
+                    <strong><span class="severity-badge high">HIGH</span>CTRの極端な低さ（0.19-0.27%）</strong>
+                    <p style="margin-top: 10px;">Amazon Sponsored Products平均CTR: 0.3-0.5%。Shizune Matchaは0.191-0.274%と下回っています。</p>
+                    <ul style="margin-left: 20px; margin-top: 8px;">
+                        <li><strong>意味：</strong>広告がAmazonの検索結果に表示されても、ユーザーがクリックしない</li>
+                        <li><strong>原因推定（優先度順）：</strong>
+                            <ul style="margin-left: 20px; margin-top: 5px;">
+                                <li>① メイン画像が競合商品より魅力的でない（写真品質、背景色など）</li>
+                                <li>② タイトルが検索キーワードとマッチしていない（やや詐欺的に見える）</li>
+                                <li>③ 価格が競合より高い（同じ品質なら安い方を選ぶ）</li>
+                                <li>④ レビュー数・評価がまだ少ない（信頼度が低い）</li>
+                            </ul>
+                        </li>
+                        <li><strong>対策：</strong>A/Bテストで画像を入れ替え、タイトルを改善、価格見直し</li>
+                    </ul>
+                </div>
+
+                <div class="bottleneck-item high">
+                    <strong><span class="severity-badge high">HIGH</span>不採算キャンペーンの放置</strong>
+                    <p style="margin-top: 10px;">売上がない（ACOS ∞）のに支出し続けるキャンペーンが存在します。</p>
+                    <ul style="margin-left: 20px; margin-top: 8px;">
+                        <li><strong>Exploration + Core Phrase：</strong>3月で$28.56、4月で$14.03の支出でコンバージョンゼロ</li>
+                        <li><strong>General キャンペーン：</strong>3月15日停止後、代替キャンペーンなし。復帰予定がないのか？</li>
+                        <li><strong>問題：</strong>キャンペーン設定で「日次予算上限」が$0（= 無制限）と推測される。細かい支出が蓄積されている</li>
+                        <li><strong>対策：</strong>不採算キャンペーンの即座停止、すべてのキャンペーンに日次予算上限を設定</li>
+                    </ul>
+                </div>
+
+                <div class="bottleneck-item high">
+                    <strong><span class="severity-badge high">HIGH</span>オーガニック売上の衰退</strong>
+                    <p style="margin-top: 10px;">広告依存度が増加し続けており、自然検索流入が弱体化しています。</p>
+                    <ul style="margin-left: 20px; margin-top: 8px;">
+                        <li><strong>3月：</strong>広告依存度69.7%、オーガニック30.3%</li>
+                        <li><strong>4月：</strong>広告依存度73.4%、オーガニック26.6%（さらに悪化）</li>
+                        <li><strong>原因：</strong>トラフィック激減に伴い、自然検索での表示機会がさらに減少している</li>
+                        <li><strong>リスク：</strong>広告を停止したら売上がゼロになる可能性。短期的にはリスク軽減のため広告継続が必要だが、中期的には「オーガニック流入強化」が必須</li>
+                    </ul>
+                </div>
+
+                <div class="bottleneck-item high">
+                    <strong><span class="severity-badge high">HIGH</span>広告チャネルの未活用</strong>
+                    <p style="margin-top: 10px;">Sponsored Brands（SB）と Sponsored Display（SD）が実施されていません。</p>
+                    <ul style="margin-left: 20px; margin-top: 8px;">
+                        <li><strong>現在：</strong>Sponsored Products（SP）のみ運用</li>
+                        <li><strong>未実施：</strong>
+                            <ul style="margin-left: 20px; margin-top: 5px;">
+                                <li>Sponsored Brands（SB）：ブランド認知・指名検索の強化</li>
+                                <li>Sponsored Display（SD）：リターゲティング・ブランド認知</li>
+                            </ul>
+                        </li>
+                        <li><strong>機会喪失：</strong>SBの CTR は SP の2倍以上。ブランド認知向上に有効。</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- セクション9: 改善アクションプラン -->
+            <section class="card">
+                <h2>9. 改善アクションプラン（優先順位順）</h2>
+
+                <div class="action-plan">
+                    <h4>🚨 Phase 1: 止血（今すぐ実行 - 24時間以内）</h4>
+                    <p style="margin-bottom: 15px; color: #666;">現在の出血を止めることが最優先です。</p>
+                    <ul>
+                        <li><strong style="color: #DC3545;">【最優先】Core Exact「matcha powder」入札額引き下げ：</strong>$3.50 → <strong>$1.00〜$1.50</strong>。現在の実績CPC $4.58は損益分岐の2.2倍。入札を下げるだけでACOS 223% → 70〜100%圏への改善が見込める。</li>
+                        <li><strong style="color: #DC3545;">【最優先】ダイナミックビッディング変更：</strong>「上下」→「ダウンのみ」に切替。現在、入札$3.50が$4.58まで膨張している原因。</li>
+                        <li><strong>Core Exact内の他3KW一旦停止：</strong>japanese matcha / japanese matcha powder / japanese matcha tea は購入ゼロ。matcha powder の入札修正効果を見てから再評価。</li>
+                        <li><strong>Exploration キャンペーン即座停止：</strong>$11.05の支出でコンバージョンゼロ。</li>
+                        <li><strong>Core Phrase キャンペーン即座停止：</strong>$17.51の支出でコンバージョンゼロ。</li>
+                        <li><strong>Brand キャンペーン予算復元：</strong>$100 → $150に戻す。ACOS 17-21%で唯一の黒字キャンペーン。</li>
+                    </ul>
+                </div>
+
+                <div class="action-plan">
+                    <h4>🔧 Phase 2: 基盤修復（1-2週間で実行）</h4>
+                    <p style="margin-bottom: 15px; color: #666;">トラフィックとコンバージョン率を改善するため、リスティング品質を向上させます。</p>
+                    <ul>
+                        <li><strong>メイン画像の刷新：</strong>
+                            <ul style="margin-left: 20px;">
+                                <li>背景を白から「緑」または「和風」に統一。ブランドイメージ強化。</li>
+                                <li>商品を大きく中央に配置（画像領域の60%以上）</li>
+                                <li>テキストを追加：「高品質・手摘み」など差別化要素</li>
+                            </ul>
+                        </li>
+                        <li><strong>タイトル改善：</strong>
+                            <ul style="margin-left: 20px;">
+                                <li>現在：「Shizune Matcha Powder」（一般的）</li>
+                                <li>改善案：「[抹茶粉] 高品質・国産 Shizune Matcha - オーガニック認証・100% 石臼挽き」</li>
+                                <li>重要キーワード（抹茶、パウダー、オーガニック）を含める</li>
+                            </ul>
+                        </li>
+                        <li><strong>A+ コンテンツ作成・導入：</strong>商品説明を画像+テキストで魅力的に。CTR向上に直結。</li>
+                        <li><strong>キーワード調査の再実施：</strong>
+                            <ul style="margin-left: 20px;">
+                                <li>「matcha powder」「green tea powder」など検索ボリュームの大きいキーワード抽出</li>
+                                <li>競合商品（Green Leaf Matcha等）との比較。なぜ彼らの方が売れているのか分析。</li>
+                                <li>ロングテールキーワード「organic matcha powder」「ceremonial matcha」なども検討</li>
+                            </ul>
+                        </li>
+                        <li><strong>Brand キャンペーンの予算増額：</strong>唯一好調（ACOS 17.9-21.2%）のため、$10-15/日へ増額。ブランド認知・指名検索の強化。</li>
+                    </ul>
+                </div>
+
+                <div class="action-plan">
+                    <h4>📈 Phase 3: 成長戦略（1ヶ月以内に実行）</h4>
+                    <p style="margin-bottom: 15px; color: #666;">新たな成長チャネルを開拓し、広告依存度を低減します。</p>
+                    <ul>
+                        <li><strong>Auto Campaign 新規作成：</strong>
+                            <ul style="margin-left: 20px;">
+                                <li>キーワード自動ディスカバリー用。月間$100程度の予算で実施。</li>
+                                <li>好調なキーワードを Exact Match に昇格させる</li>
+                            </ul>
+                        </li>
+                        <li><strong>Sponsored Brands（SB）キャンペーン開始：</strong>
+                            <ul style="margin-left: 20px;">
+                                <li>ブランド認知・指名検索強化。初期予算 $20/日</li>
+                                <li>CTRが SP の2倍。ACOS も低い傾向</li>
+                            </ul>
+                        </li>
+                        <li><strong>商品レビュー獲得プログラム：</strong>
+                            <ul style="margin-left: 20px;">
+                                <li>Amazon Vine 登録検討。第三者認証がCTR向上に有効。</li>
+                                <li>ポストカード同梱でレビュー促進（Amazon政策内で）</li>
+                            </ul>
+                        </li>
+                        <li><strong>競合価格分析と価格戦略：</strong>
+                            <ul style="margin-left: 20px;">
+                                <li>「matcha powder」での同級商品と価格比較</li>
+                                <li>現在の価格が相場より高い場合は値下げ検討。広告費削減以上の効果がある可能性。</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="action-plan">
+                    <h4>🎯 Phase 4: スケール（2-3ヶ月以降）</h4>
+                    <p style="margin-bottom: 15px; color: #666;">実績に基づいた戦略的拡大を行います。</p>
+                    <ul>
+                        <li><strong>好調キーワードの昇格：</strong>Auto/Exploration で好調なキーワードを Exact Match 専用キャンペーンに昇格。CPC 削減、ACOS 改善へ。</li>
+                        <li><strong>Sponsored Display（SD）開始：</strong>
+                            <ul style="margin-left: 20px;">
+                                <li>リターゲティング：過去に商品ページを訪問したユーザーに対する再広告</li>
+                                <li>ブランド認知向上</li>
+                            </ul>
+                        </li>
+                        <li><strong>季節性を考慮した年間広告戦略：</strong>
+                            <ul style="margin-left: 20px;">
+                                <li>12月：需要ピーク。予算増加。</li>
+                                <li>1月：年始特需。「新年の健康習慣」訴求。</li>
+                                <li>2-3月：需要低迷。予算削減、オーガニック強化に注力。</li>
+                                <li>4-5月：春の需要。新商品導入検討。</li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="highlight" style="margin-top: 30px;">
+                    <strong>実行スケジュール例：</strong>
+                    <ul style="margin-left: 20px; margin-top: 10px;">
+                        <li><strong>本日（今すぐ）：</strong>Phase 1の止血策を実行。1時間で完了可能。</li>
+                        <li><strong>3-5日以内：</strong>Phase 2の基盤修復開始。画像・タイトル改善は1-2日で完了可能。</li>
+                        <li><strong>1-2週間後：</strong>改善効果の測定。ACOS、CTR、トラフィックの改善を確認。</li>
+                        <li><strong>1ヶ月以内：</strong>Phase 3の新チャネル立ち上げ。SB、Auto Campaign開始。</li>
+                        <li><strong>3ヶ月後：</strong>ACOS 50-80% への改善を目標。オーガニック流入の回復を期待。</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- セクション10: 補足データの制限事項 -->
+            <section class="card">
+                <h2>10. 補足：データの制限事項</h2>
+
+                <div class="note">
+                    <strong>重要な注意：</strong>本レポートのデータは以下の制限下で作成されています。
+                </div>
+
+                <ul style="margin-left: 20px; margin-top: 20px;">
+                    <li><strong>Amazon Ads API の時間制限：</strong>直近60日分のデータのみ取得可能。12月～1月の広告キャンペーン詳細データ（CPC、CTR等）は取得不可。</li>
+                    <li><strong>Windsor.ai API タイムアウト：</strong>大規模データ取得時にタイムアウトが発生。一部の期間・細粒度データが欠損している可能性。</li>
+                    <li><strong>1月セラーデータ欠損：</strong>1月のセッション数、ページビュー、Buy Box % など、トラフィック関連データが取得できていません。</li>
+                    <li><strong>ASIN別詳細分析 不可：</strong>複数SKU/ASINがある場合、Amazon Ads APIの制限により個別分析ができません。</li>
+                    <li><strong>ROAS/ACoS計算方法：</strong>スポンサー商品の売上（attributed sales）に基づいて計算。間接的な売上（購入者が広告を見た後、購入した他の商品など）は含まれていません。</li>
+                </ul>
+
+                <div class="note" style="margin-top: 20px;">
+                    <strong>推奨事項：</strong>このレポートは直近データに基づいた緊急分析です。長期的な改善計画を立案する際には、より詳細なデータ（Seller Central のビジネスレポート、Amazon Brand Analytics等）の確認をお勧めします。
+                </div>
+            </section>
+
+            <!-- セクション11: 結論 -->
+            <section class="card">
+                <h2>11. 結論と推奨アクション</h2>
+
+                <div class="highlight">
+                    <strong style="font-size: 1.1em; display: block; margin-bottom: 15px;">緊急宣言：即座の対策が必須</strong>
+                    <p style="margin-bottom: 15px;">Shizune Matcha の Amazon 事業は現在、持続不可能な赤字状態にあります。以下の理由から、今後数日以内に対策を実施する必要があります。</p>
+                    <ul style="margin-left: 20px; margin-bottom: 15px;">
+                        <li><span class="danger">売上＜広告費</span>：現在、販売するほど赤字が拡大しています（TACoS 112-166%）</li>
+                        <li><span class="danger">トラフィック激減</span>：セッション数が71%低下し、回復の兆候が見えません</li>
+                        <li><span class="danger">オーガニック流入の衰退</span>：広告依存度が70%を超え、持続不可能</li>
+                        <li><span class="danger">キャンペーン管理の不備</span>：不採算キャンペーンが放置され、日次予算上限も設定されていない</li>
+                    </ul>
+                </div>
+
+                <h3 style="margin-top: 30px; color: #5a7a42;">段階的な推奨行動：</h3>
+
+                <table style="margin-top: 20px;">
+                    <thead>
+                        <tr>
+                            <th>タイミング</th>
+                            <th>実行内容</th>
+                            <th>期待される効果</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td style="font-weight: 600;">本日</td>
+                            <td>Core Exact 日次予算$15/日に削減、Exploration/Core Phrase 停止、全キャンペーンに日次上限設定</td>
+                            <td>月間広告費を$850→$450へ削減、出血を止める</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">3-5日内</td>
+                            <td>メイン画像・タイトル改善、ネガティブキーワード追加</td>
+                            <td>CTR改善、CPC低下、コンバージョン率向上</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">1-2週間</td>
+                            <td>A+コンテンツ作成、キーワード再調査、Brand キャンペーン予算増額</td>
+                            <td>セッション数の回復、広告効率の改善開始</td>
+                        </tr>
+                        <tr>
+                            <td style="font-weight: 600;">1ヶ月以内</td>
+                            <td>Auto Campaign開始、SB キャンペーン立ち上げ、レビュー獲得開始</td>
+                            <td>新規顧客層へのリーチ、オーガニック流入の回復兆候</td>
+                        </tr>
+                        <tr style="background: #f0f5f0;">
+                            <td style="font-weight: 600;">3ヶ月後</td>
+                            <td>実績評価、好調キーワードの昇格、季節性を考慮した予算配分</td>
+                            <td>ACOS 50-80%への改善、赤字状態からの脱却</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <h3 style="margin-top: 30px; color: #5a7a42;">重要な警告：</h3>
+
+                <div style="background: #fff5f5; border-left: 4px solid #DC3545; padding: 20px; margin-top: 20px; border-radius: 6px;">
+                    <p style="margin-bottom: 10px;"><strong style="color: #DC3545;">現在の広告スケジュールを継続すれば、以下のようなシナリオが発生します：</strong></p>
+                    <ul style="margin-left: 20px;">
+                        <li><strong>シナリオA（何も対策しない場合）：</strong>月間赤字が$200-300に拡大。3-6ヶ月で資金がショート。事業停止へ。</li>
+                        <li><strong>シナリオB（広告を完全に停止）：</strong>短期的には支出がゼロになるが、トラフィックがさらに低下し、売上ゼロへ。</li>
+                        <li><strong>シナリオC（本レポートの対策を実行）：</strong>1-3ヶ月の苦しい調整期間を経て、月間収支の改善、6ヶ月で黒字化の可能性。</li>
+                    </ul>
+                    <p style="margin-top: 15px;"><span class="danger"><strong>シナリオC が唯一持続可能なパスです。</strong></span></p>
+                </div>
+
+                <h3 style="margin-top: 30px; color: #5a7a42;">最後に：</h3>
+
+                <p style="margin-top: 15px; line-height: 1.8;">Shizune Matcha は品質の良い商品を提供しているはずです。現在の危機的状況は、<span class="warning">広告運用の最適化不足やリスティング品質の低下</span>が主因であり、商品そのものの問題ではありません。本レポートで提示した対策を段階的に実行すれば、復帰の可能性は十分にあります。</p>
+
+                <p style="margin-top: 15px; line-height: 1.8;">重要なのは<span class="danger">今すぐ行動すること</span>です。1週間の遅延は月間$50以上の追加損失につながります。</p>
+            </section>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="footer-date">レポート生成日: 2026年4月14日</div>
+                <div class="footer-source">データソース: Windsor.ai (Amazon Seller Central + Amazon Ads API)</div>
+                <div style="margin-top: 15px; font-size: 0.85em; color: #999; padding-top: 15px; border-top: 1px solid #ddd;">
+                    このレポートは、Amazon Ads API および Seller Central API から取得した直近データに基づいて作成されました。<br>
+                    データの精度は、Amazon API の仕様および Windsor.ai のデータ収集精度に依存します。
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // グラフスタイル定義
+        const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    labels: {
+                        font: {
+                            family: "'Segoe UI', 'メイリオ', sans-serif",
+                            size: 12
+                        }
+                    }
+                },
+                tooltip: {
+                    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+                    padding: 12,
+                    titleFont: {
+                        family: "'Segoe UI', 'メイリオ', sans-serif",
+                        size: 13
+                    },
+                    bodyFont: {
+                        family: "'Segoe UI', 'メイリオ', sans-serif",
+                        size: 12
+                    }
+                }
+            }
+        };
+
+        // 1. 売上トレンドチャート
+        const trendCtx = document.getElementById('trendChart').getContext('2d');
+        new Chart(trendCtx, {
+            type: 'line',
+            data: {
+                labels: ['12月1-10', '2月1-10', '3月1-15', '3月16-31', '4月1-12'],
+                datasets: [
+                    {
+                        label: '1日あたり売上',
+                        data: [51.29, 16.20, 32.50, 16.68, 24.08],
+                        borderColor: '#DC3545',
+                        backgroundColor: 'rgba(220, 53, 69, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: '1日あたりセッション数',
+                        data: [42.3, 14.5, 11.8, 12.2, 14.5],
+                        borderColor: '#6B8E4E',
+                        backgroundColor: 'rgba(107, 142, 78, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        yAxisID: 'y1'
+                    }
+                ]
+            },
+            options: {
+                ...chartOptions,
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: '売上（$）',
+                            font: {
+                                family: "'Segoe UI', 'メイリオ', sans-serif",
+                                size: 12
+                            }
+                        }
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: 'セッション数',
+                            font: {
+                                family: "'Segoe UI', 'メイリオ', sans-serif",
+                                size: 12
+                            }
+                        },
+                        grid: {
+                            drawOnChartArea: false,
+                        },
+                    }
+                }
+            }
+        });
+
+        // 2. キャンペーン支出vs売上チャート
+        const campaignSpendCtx = document.getElementById('campaignSpendChart').getContext('2d');
+        new Chart(campaignSpendCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Brand', 'General', 'Core Exact', 'Exploration', 'Core Phrase'],
+                datasets: [
+                    {
+                        label: '広告支出',
+                        data: [4.59, 297.10, 519.90, 11.05, 17.51],
+                        backgroundColor: '#FD7E14',
+                        yAxisID: 'y'
+                    },
+                    {
+                        label: '売上',
+                        data: [25.59, 222.13, 277.90, 0, 0],
+                        backgroundColor: '#6B8E4E',
+                        yAxisID: 'y'
+                    }
+                ]
+            },
+            options: {
+                ...chartOptions,
+                indexAxis: 'x',
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        title: {
+                            display: true,
+                            text: '金額（$）',
+                            font: {
+                                family: "'Segoe UI', 'メイリオ', sans-serif",
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 3. キャンペーンROASチャート
+        const campaignROASCtx = document.getElementById('campaignROASChart').getContext('2d');
+        new Chart(campaignROASCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Brand', 'General', 'Core Exact', 'Exploration', 'Core Phrase'],
+                datasets: [
+                    {
+                        label: 'ACOS（%）',
+                        data: [17.9, 133.8, 187.1, Infinity, Infinity],
+                        backgroundColor: function(context) {
+                            const value = context.parsed.y;
+                            if (value < 30) return '#28a745';
+                            if (value < 100) return '#FFC107';
+                            return '#DC3545';
+                        }
+                    }
+                ]
+            },
+            options: {
+                ...chartOptions,
+                indexAxis: 'x',
+                plugins: {
+                    ...chartOptions.plugins,
+                    tooltip: {
+                        ...chartOptions.plugins.tooltip,
+                        callbacks: {
+                            label: function(context) {
+                                const value = context.parsed.y;
+                                return isFinite(value) ? 'ACOS: ' + value.toFixed(1) + '%' : 'ACOS: 計算不可（売上なし）';
+                            }
+                        }
+                    }
+                },
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'ACOS（%）',
+                            font: {
+                                family: "'Segoe UI', 'メイリオ', sans-serif",
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 4. TACoS比較チャート
+        const tacosCtx = document.getElementById('tacosChart').getContext('2d');
+        new Chart(tacosCtx, {
+            type: 'bar',
+            data: {
+                labels: ['3月全体', '4月1-12日', '理想的な範囲'],
+                datasets: [
+                    {
+                        label: 'TACoS（%）',
+                        data: [112.7, 165.8, 12.5],
+                        backgroundColor: ['#DC3545', '#DC3545', '#28a745']
+                    }
+                ]
+            },
+            options: {
+                ...chartOptions,
+                indexAxis: 'x',
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        title: {
+                            display: true,
+                            text: 'TACoS（%）',
+                            font: {
+                                family: "'Segoe UI', 'メイリオ', sans-serif",
+                                size: 12
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // 5. 3月広告依存度（ドーナッツ）
+        const dependencyMarchCtx = document.getElementById('dependencyChartMarch').getContext('2d');
+        new Chart(dependencyMarchCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['広告経由売上（69.7%）', 'オーガニック売上（30.3%）'],
+                datasets: [
+                    {
+                        data: [69.7, 30.3],
+                        backgroundColor: ['#FD7E14', '#6B8E4E'],
+                        borderColor: ['#fff', '#fff'],
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                ...chartOptions,
+                plugins: {
+                    ...chartOptions.plugins,
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // 6. 4月広告依存度（ドーナッツ）
+        const dependencyAprilCtx = document.getElementById('dependencyChartApril').getContext('2d');
+        new Chart(dependencyAprilCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['広告経由売上（73.4%）', 'オーガニック売上（26.6%）'],
+                datasets: [
+                    {
+                        data: [73.4, 26.6],
+                        backgroundColor: ['#DC3545', '#6B8E4E'],
+                        borderColor: ['#fff', '#fff'],
+                        borderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                ...chartOptions,
+                plugins: {
+                    ...chartOptions.plugins,
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+
+        // 7. トラフィックトレンドチャート
+        const trafficCtx = document.getElementById('trafficChart').getContext('2d');
+        new Chart(trafficCtx, {
+            type: 'line',
+            data: {
+                labels: ['12月1-10', '2月1-10', '3月全体', '4月1-12'],
+                datasets: [
+                    {
+                        label: '1日あたりセッション数',
+                        data: [42.3, 14.5, 12.0, 14.5],
+                        borderColor: '#6B8E4E',
+                        backgroundColor: 'rgba(107, 142, 78, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        pointRadius: 6,
+                        pointBackgroundColor: '#6B8E4E',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2
+                    },
+                    {
+                        label: 'Buy Box %',
+                        data: [98, 73, 98, 98],
+                        borderColor: '#FFC107',
+                        backgroundColor: 'rgba(255, 193, 7, 0.1)',
+                        borderWidth: 3,
+                        fill: true,
+                        tension: 0.4,
+                        yAxisID: 'y1',
+                        pointRadius: 6,
+                        pointBackgroundColor: '#FFC107',
+                        pointBorderColor: '#fff',
+                        pointBorderWidth: 2
+                    }
+                ]
+            },
+            options: {
+                ...chartOptions,
+                scales: {
+                    y: {
+                        type: 'linear',
+                        display: true,
+                        position: 'left',
+                        title: {
+                            display: true,
+                            text: 'セッション数',
+                            font: {
+                                family: "'Segoe UI', 'メイリオ', sans-serif",
+                                size: 12
+                            }
+                        },
+                        min: 0,
+                        max: 50
+                    },
+                    y1: {
+                        type: 'linear',
+                        display: true,
+                        position: 'right',
+                        title: {
+                            display: true,
+                            text: 'Buy Box %',
+                            font: {
+                                family: "'Segoe UI', 'メイリオ', sans-serif",
+                                size: 12
+                            }
+                        },
+                        min: 0,
+                        max: 100,
+                        grid: {
+                            drawOnChartArea: false,
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
