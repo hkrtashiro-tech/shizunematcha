@@ -4,8 +4,8 @@
 **用途**: Shopify Page `/pages/matcha-guide` の本文（body_html）
 **実装方法**: デザイン済みカスタムHTML/CSS（インラインstyle同梱）。Shopify `pageCreate` の `body` に投入。
 **配色**: testimonialsセクション準拠（`#2f3a33` / `#8a948c` / `#eef1ee` / `#4a544c`）
-**画像**: プレースホルダー（後日Hikaruさん手配の画像URLに差し替え）
-**ステータス**: 下書き（draft）で作成予定
+**画像**: Hikaruさん手配の7枚をShopify CDN URLで配置済み（2026-06-17）。No.5/No.7はHEIC形式のため一部ブラウザで非表示の可能性あり（後日JPG/WebPへ差し替え検討）。
+**ステータス**: 公開済み（published / 2026-06-17）
 
 ---
 
@@ -243,12 +243,14 @@
     <h1 class="mg-h1">Matcha, made simple</h1>
     <p>Everything you need to choose, prepare, and enjoy real matcha at home — no ceremony required, just a quiet moment for yourself.</p>
   </header>
+  <div class="mg-figure"><img src="https://cdn.shopify.com/s/files/1/0922/8310/9686/files/zed-can-vXivoEBxWIY-unsplash_1.jpg?v=1781621008" alt="A bowl of freshly whisked SHIZUNE matcha"></div>
 
   <!-- 2. What is matcha -->
   <section class="mg-section">
     <h2 class="mg-h2">What is matcha?</h2>
     <p>Matcha is finely stone-ground green tea, made from shade-grown leaves called <em>tencha</em>. Unlike steeped tea, you drink the whole leaf — which is why a single bowl carries a deep, vibrant flavor and a calm, lasting energy.</p>
     <p>The shading slows the leaves' growth and concentrates <em>L-theanine</em>, the amino acid behind matcha's smooth focus — alert, but never jittery.</p>
+    <div class="mg-figure"><img src="https://cdn.shopify.com/s/files/1/0922/8310/9686/files/phuong-nguyen-DgW9B48pRb4-unsplash_1.jpg?v=1758025379" alt="Finely stone-ground matcha powder"></div>
     <div class="mg-points">
       <div class="mg-point"><h3>Whole leaf</h3><p>You drink the entire leaf, not just an infusion.</p></div>
       <div class="mg-point"><h3>Shade-grown</h3><p>Weeks under shade build umami and color.</p></div>
@@ -260,6 +262,7 @@
   <section class="mg-section">
     <h2 class="mg-h2">Understanding matcha grades</h2>
     <p>Not all matcha is made for the same moment. Choosing the right grade is the difference between a bowl you sip slowly and a latte you build your morning around.</p>
+    <div class="mg-figure"><img src="https://cdn.shopify.com/s/files/1/0922/8310/9686/files/zed-can-BFeHprrF4Aw-unsplash_2.jpg?v=1781935077" alt="A bowl of usucha — thin matcha"></div>
     <table class="mg-table">
       <thead><tr><th></th><th>Ceremonial Grade</th><th>Culinary Grade</th></tr></thead>
       <tbody>
@@ -286,7 +289,7 @@
   <section class="mg-section">
     <h2 class="mg-h2">How to whisk a bowl</h2>
     <p>The traditional way (<em>usucha</em>) takes about a minute. No special skill — just a steady hand and a quiet moment.</p>
-    <div class="mg-figure">Image — whisking a bowl</div>
+    <div class="mg-figure"><img src="https://cdn.shopify.com/s/files/1/0922/8310/9686/files/huy-phan-Ku-huM0VCak-unsplash_1.jpg?v=1781621237" alt="Whisking a bowl of SHIZUNE matcha"></div>
     <ol class="mg-steps">
       <li><strong>Sift</strong> — Sift 1–2 tsp (2g) of matcha into a bowl to remove clumps.</li>
       <li><strong>Add water</strong> — Pour ~2 oz (60ml) of hot water, just off the boil (~70–80°C / 160–175°F).</li>
@@ -300,7 +303,7 @@
   <section class="mg-section">
     <h2 class="mg-h2">How to make a matcha latte</h2>
     <p>The everyday way to enjoy matcha — iced or hot.</p>
-    <div class="mg-figure">Image — matcha latte</div>
+    <div class="mg-figure"><img src="https://cdn.shopify.com/s/files/1/0922/8310/9686/files/IMG_2378.heic?v=1761444893" alt="An iced SHIZUNE matcha latte"></div>
     <ol class="mg-steps">
       <li><strong>Make a paste</strong> — Whisk 1–2 tsp matcha with a splash of hot water until smooth.</li>
       <li><strong>Add milk</strong> — Pour over ice (or warm milk) — dairy or oat, almond, your choice.</li>
@@ -313,6 +316,7 @@
   <section class="mg-section">
     <h2 class="mg-h2">How to store matcha</h2>
     <p>Matcha is delicate. Light, air, heat, and moisture fade its color and aroma.</p>
+    <div class="mg-figure"><img src="https://cdn.shopify.com/s/files/1/0922/8310/9686/files/Blog_image_1.png?v=1760960201" alt="Storing matcha to keep it fresh"></div>
     <ul class="mg-list">
       <li><strong>Seal it</strong> — Keep the bag or tin tightly closed after each use.</li>
       <li><strong>Keep it cool &amp; dark</strong> — Store away from sunlight and the stove; a cupboard or fridge is ideal.</li>
@@ -325,6 +329,7 @@
     <h2 class="mg-h2">Why real matters — and how to spot it</h2>
     <p>Matcha's popularity has grown faster than Japan can grow the leaf. Demand far outpaces supply — and that gap is where shortcuts appear.</p>
     <p>Some labels quietly cut their matcha with cheaper green tea like <em>sencha</em> to stretch it. Others print a famous region such as "Uji" on the tin while sourcing the powder elsewhere. It's hard to see in a bright green photo — but you can taste it, and over time, you can tell.</p>
+    <div class="mg-figure"><img src="https://cdn.shopify.com/s/files/1/0922/8310/9686/files/IMG_0572_2.heic?v=1757404964" alt="A Japanese tea field"></div>
     <ul class="mg-list">
       <li><strong>One leaf, nothing added</strong> — Pure stone-ground tencha. No sencha, no fillers, no bulking agents.</li>
       <li><strong>A named origin, not a borrowed name</strong> — Each matcha tied to a real region you can trust.</li>
