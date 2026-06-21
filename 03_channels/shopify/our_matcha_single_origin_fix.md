@@ -68,7 +68,7 @@ Matcha Guideページで「**single-origin（産地ごとに単一・現在の�
 
 - [ ] 産地アコーディオン = Shizuoka / Uji / Kagoshima（Izumo を削除）
 - [ ] 動画セクション本文 = B案（single-origin, never mixed）に差し替え
-- [ ] 動画セクション見出し = 単数形（Region）に変更
+- [ ] 動画セクション見出し = "Regions"（複数形）のまま変更不要
 - [ ] ページ内の他テキストに Izumo / Okabe の言及が残っていないか確認
 - [ ] Matcha Guideページ（/pages/matcha-guide）の "single-origin / current matcha is grown in Shizuoka" と矛盾しないか確認
 
