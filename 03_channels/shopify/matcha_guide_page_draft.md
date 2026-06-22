@@ -136,7 +136,7 @@
 
 > **The SHIZUNE difference:** We're a Japanese-run brand with a clear line back to the field. Every SHIZUNE matcha is tied to a single, named Japanese region — our current matcha is grown in Shizuoka — made in Japan by Japanese makers. Traceable by origin, and never mixed. When the leaf is honest, you don't need to hide behind a label.
 
-*（CTA: Read our sourcing story → /pages/our-matcha）*
+*（CTA: Read our sourcing story → /pages/our-matcha ／ Read more: Why real matcha matters → /pages/why-real-matcha-matters）*
 
 ---
 

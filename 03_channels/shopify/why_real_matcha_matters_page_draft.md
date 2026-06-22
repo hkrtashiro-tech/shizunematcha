@@ -151,7 +151,7 @@
 - セクション3・4は他社を直接名指しせず、「事実→SHIZUNEの透明性」の対比で上品に訴求。
 - 数値・健康表現はUS向けに断定を避ける（薬機/景表配慮）。
 - 内部リンク: Our Matcha / Matcha Guide の双方向リンクを必ず設置（SEOと回遊）。
-- Matcha Guide のセクション7末尾に「Read more: Why real matcha matters →」を追記し、本ページへ送客（別タスク・承認後）。
+- ✅ Matcha Guide のセクション7末尾に「Read more: Why real matcha matters →」を追記済み（2026-06-21・ライブページ反映済み）。本ページへ送客。
 
 ---
 
