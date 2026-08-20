@@ -16,7 +16,10 @@
 
 **Headline（EN）**
 > SHIZUNE MATCHA
-> Single-Origin Matcha from Shizuoka, Japan
+> A MOMENT OF SERENITY
+
+**Descriptor（EN）**
+> Fine Japanese Matcha · Single-Origin, Shizuoka
 
 **Sub（EN）**
 > Wholesale & Partnership Program
@@ -25,11 +28,8 @@
 > Traverse Asia · shizunematcha.com
 
 **【レイアウト・補足】**
-- 静けさ・余白を最大化。中央または左下にロゴ、背景はキービジュアル（TBD：抹茶の点前/静物）。
-- タグライン候補（要選定）:
-  - "The quiet ritual of Japanese matcha."
-  - "Stillness, in every bowl."
-  - "Modern Japanese matcha, single-origin from Shizuoka."
+- 静けさ・余白を最大化。中央または左下にロゴ、背景はキービジュアル（別途共有）。
+- タグライン確定: **"A MOMENT OF SERENITY"**（情緒）＋ ディスクリプタ "Fine Japanese Matcha"（説明）。
 
 ---
 
@@ -78,17 +78,18 @@
 **【目的】** 品質の裏付けを示し、価格の高さを正当化する。
 
 **Headline（EN）**
-> Shade-grown leaves, stone-milled to a fine, vivid powder.
+> Shade-grown leaves, finely milled to a smooth Japanese matcha.
 
 **Body（EN）**
 > - **Ceremonial-grade** matcha, selected for smooth umami and a clean finish.
-> - Stone-milled to preserve aroma, color, and texture.
-> - Sealed for freshness; recommended storage and shelf life provided per lot.
+> - Finely milled to a soft, even powder.
+> - Sealed for freshness — **shelf life: 12 months** from production.
 > - Certifications / origin documentation: TBD（提示可能な認証・産地証明を確定）
 
 **【レイアウト・補足】**
-- 製法アイコン（Shade-grown → Stone-milled → Sealed）の3〜4ステップ図。
-- 賞味期限・保存条件・認証は要確定（優先B）。確定まで "provided per lot / TBD"。
+- 製法アイコン（Shade-grown → Finely milled → Sealed）の3ステップ図。
+- "stone-milled"/"vivid" は実態と異なるため不使用。賞味期限は12ヶ月で確定。
+- 認証・産地証明のみ要確定（優先B）。
 
 ---
 
@@ -191,10 +192,10 @@
 > **Order terms**
 > - Case pack: 12 units per case
 > - Opening order: from 3 cases (mix of SKUs OK) · reorder from 1 case
-> - Suggested retail: TBD（掛率/SRP指針を確定）
 
 **【レイアウト・補足】**
-- 掛率/推奨小売価格（SRP）は確定後に追記。バイヤーが利益を計算できると成約が早い。
+- 店頭価格は小売店が決めるため掛率設定は不要。卸価格のみ提示。
+- （任意）推奨小売価格を将来載せればバイヤーが利益計算しやすい。今回は省略。
 - カフェ商談時はこのページを非表示。
 
 ---
@@ -274,13 +275,13 @@
 >
 > **Contact**
 > - Hikaru Tashiro — Brand Owner
-> - Email: TBD（B2B用アドレスを確定）
+> - Email: hikaru.tashiro@traverse-asia.com
 > - Web: shizunematcha.com · traverse-asia.com
 >
 > *We look forward to partnering with you.*
 
 **【レイアウト・補足】**
-- 連絡先・法人表記を確定（優先C）。CTAは1つに絞る（「サンプルを請求する」等）。
+- CTAは1つに絞る（「Request samples」）。連絡先確定済み。
 
 ---
 
@@ -292,6 +293,14 @@
 
 ## 残TBD（差し込み待ち）
 
-- タグライン確定（P01）／認証・産地証明・賞味期限（P04）／掛率・SRP指針（P08）
-- DDP配送費に応じた送料無料閾値（P09）／実績数値（P10）／B2B連絡先（P12）
-- 為替レートの確定（全体・S$1≈¥113）／キービジュアル素材
+- 認証・産地証明（P04）※賞味期限12ヶ月は確定
+- DDP配送費に応じた送料無料閾値（P09）／実績数値・レビュー（P10）
+- キービジュアル素材（別途共有予定）
+
+## 確定済み（今回反映）
+
+- タグライン: "A MOMENT OF SERENITY" ＋ "Fine Japanese Matcha"（P01）
+- 賞味期限: 12ヶ月（P04）／ "stone-milled"・"vivid" は不使用
+- 掛率: 設定不要（店頭価格は小売店が決定）→ P08は卸価格のみ
+- B2B連絡先: Hikaru Tashiro / hikaru.tashiro@traverse-asia.com（P12）
+- 為替: S$1≈¥113（概算・subject to FX）
