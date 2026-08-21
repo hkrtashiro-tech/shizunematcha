@@ -113,10 +113,54 @@ function ensoCircle(slide, x, y, d, bgc, strokeColor, width){
   footer(s,false);
 })();
 
-// ================= P04 — QUALITY & CRAFT =================
+// ================= P04 — WHERE IS SHIZUOKA? =================
+(() => {
+  const s = pres.addSlide(); bg(s, WHITE);
+  kicker(s, "The Region", M, M, false); pageNo(s,4,false);
+  s.addText("Where is Shizuoka?", { x:M, y:1.15, w:11.5, h:0.7, fontFace:HEAD, fontSize:34, color:TXT });
+  s.addText("Japan’s most celebrated tea region — at the foot of Mt. Fuji.", { x:M, y:1.95, w:11.5, h:0.4, fontFace:BODY, fontSize:14.5, color:MUTED });
+
+  // ---- left: stylized locator (placeholder for map image) ----
+  const cardX=M, cardY=2.55, cardW=5.7, cardH=3.95;
+  s.addShape(pres.ShapeType.roundRect, { x:cardX, y:cardY, w:cardW, h:cardH, rectRadius:0.08, fill:{color:PAPER}, line:{color:LINE,width:1} });
+  s.addText("JAPAN", { x:cardX+0.35, y:cardY+0.25, w:2, h:0.3, fontFace:BODY, fontSize:11, bold:true, charSpacing:3, color:SAGE });
+  // Mt. Fuji
+  s.addShape(pres.ShapeType.triangle, { x:cardX+1.75, y:cardY+0.85, w:1.9, h:1.35, fill:{color:SAGE} });
+  s.addShape(pres.ShapeType.triangle, { x:cardX+2.42, y:cardY+0.85, w:0.56, h:0.42, fill:{color:WHITE} });
+  // Shizuoka marker (concentric rings) at foot of Fuji
+  const mx=cardX+2.55, my=cardY+2.35;
+  s.addShape(pres.ShapeType.ellipse, { x:mx-0.02, y:my-0.02, w:0.78, h:0.78, fill:{color:PAPER}, line:{color:MATCHA,width:1.5} });
+  s.addShape(pres.ShapeType.ellipse, { x:mx+0.23, y:my+0.23, w:0.32, h:0.32, fill:{color:MATCHA} });
+  s.addText("Shizuoka", { x:mx+0.9, y:my+0.05, w:2.3, h:0.4, fontFace:BODY, fontSize:14, bold:true, color:MATCHAD, valign:"middle" });
+  // reference dots
+  s.addShape(pres.ShapeType.ellipse, { x:cardX+4.55, y:cardY+1.35, w:0.16, h:0.16, fill:{color:MUTED} });
+  s.addText("Tokyo", { x:cardX+4.05, y:cardY+1.05, w:1.3, h:0.28, fontFace:BODY, fontSize:10.5, color:MUTED, align:"center" });
+  s.addShape(pres.ShapeType.ellipse, { x:cardX+0.85, y:cardY+2.75, w:0.16, h:0.16, fill:{color:MUTED} });
+  s.addText("Kyoto", { x:cardX+0.35, y:cardY+2.45, w:1.3, h:0.28, fontFace:BODY, fontSize:10.5, color:MUTED, align:"center" });
+  s.addText("Pacific coast  ·  Central Japan", { x:cardX+0.35, y:cardY+cardH-0.5, w:cardW-0.7, h:0.3, fontFace:BODY, italic:true, fontSize:11, color:MUTED });
+
+  // ---- right: fact rows ----
+  const fx=7.05, fw=W-M-fx;
+  const facts=[
+    ["Central Japan, Pacific coast","Between Tokyo and Kyoto, at the foot of Mt. Fuji — about 1.5 hours from Tokyo."],
+    ["A heritage of tea","One of Japan’s oldest and most renowned tea-growing regions, cultivated for centuries."],
+    ["Ideal terroir","Misty mountain slopes, a mild maritime climate, and well-drained volcanic soil."],
+    ["A name buyers trust","In Japan, “Shizuoka” is synonymous with quality tea."],
+  ];
+  let fy=2.55;
+  facts.forEach(f=>{
+    s.addShape(pres.ShapeType.ellipse, { x:fx, y:fy+0.04, w:0.44, h:0.44, fill:{color:MATCHA} });
+    s.addText(f[0], { x:fx+0.65, y:fy-0.05, w:fw-0.65, h:0.35, fontFace:HEAD, fontSize:16, color:TXT });
+    s.addText(f[1], { x:fx+0.65, y:fy+0.34, w:fw-0.7, h:0.65, fontFace:BODY, fontSize:12.5, color:MUTED, valign:"top" });
+    fy+=1.0;
+  });
+  footer(s,false);
+})();
+
+// ================= P05 — QUALITY & CRAFT =================
 (() => {
   const s = pres.addSlide(); bg(s, PAPER);
-  kicker(s, "Quality & Craft", M, M, false); pageNo(s,4,false);
+  kicker(s, "Quality & Craft", M, M, false); pageNo(s,5,false);
   s.addText("Shade-grown leaves, finely\nmilled to a smooth matcha.", { x:M, y:1.2, w:11, h:1.3, fontFace:HEAD, fontSize:32, color:TXT, lineSpacingMultiple:1.02 });
   // 3-step process
   const steps = ["Shade-grown","Finely milled","Sealed for freshness"];
@@ -149,7 +193,7 @@ function ensoCircle(slide, x, y, d, bgc, strokeColor, width){
 // ================= P05 — PRODUCT LINEUP =================
 (() => {
   const s = pres.addSlide(); bg(s, WHITE);
-  kicker(s, "Product Lineup", M, M, false); pageNo(s,5,false);
+  kicker(s, "Product Lineup", M, M, false); pageNo(s,6,false);
   s.addText("Two formats. One standard of quality.", { x:M, y:1.2, w:11.5, h:0.7, fontFace:HEAD, fontSize:32, color:TXT });
   const colw = (W - 2*M - 0.5)/2;
   // Foodservice
@@ -183,7 +227,7 @@ function ensoCircle(slide, x, y, d, bgc, strokeColor, width){
 // ================= P06 — WHY SHIZUNE =================
 (() => {
   const s = pres.addSlide(); bg(s, INK);
-  kicker(s, "Why SHIZUNE", M, M, true); pageNo(s,6,true);
+  kicker(s, "Why SHIZUNE", M, M, true); pageNo(s,7,true);
   s.addText("Beyond commodity matcha.", { x:M, y:1.2, w:11, h:0.7, fontFace:HEAD, fontSize:34, color:WHITE });
   const rows = [
     ["","Commodity matcha","SHIZUNE"],
@@ -217,7 +261,7 @@ function ensoCircle(slide, x, y, d, bgc, strokeColor, width){
 // ================= P07 — FOR CAFÉS =================
 (() => {
   const s = pres.addSlide(); bg(s, WHITE);
-  kicker(s, "For Cafés & Foodservice", M, M, false); pageNo(s,7,false);
+  kicker(s, "For Cafés & Foodservice", M, M, false); pageNo(s,8,false);
   s.addText("A signature matcha menu,\nwith the margins to match.", { x:M, y:1.2, w:7, h:1.3, fontFace:HEAD, fontSize:30, color:TXT, lineSpacingMultiple:1.02 });
   [ ["Versatile","Hot & iced matcha lattes, desserts, seasonal specials"],
     ["A premium story","“Single-origin Shizuoka matcha” on your menu"],
@@ -249,7 +293,7 @@ function ensoCircle(slide, x, y, d, bgc, strokeColor, width){
 // ================= P08 — FOR RETAIL =================
 (() => {
   const s = pres.addSlide(); bg(s, PAPER);
-  kicker(s, "For Retail & Specialty", M, M, false); pageNo(s,8,false);
+  kicker(s, "For Retail & Specialty", M, M, false); pageNo(s,9,false);
   s.addText("A shelf presence customers\nreach for — and remember.", { x:M, y:1.2, w:7, h:1.3, fontFace:HEAD, fontSize:30, color:TXT, lineSpacingMultiple:1.02 });
   [ ["Elevates your shelf","Design-led, premium packaging"],
     ["Story sells","Single-origin provenance, a modern Japanese brand"],
@@ -284,7 +328,7 @@ function ensoCircle(slide, x, y, d, bgc, strokeColor, width){
 // ================= P09 — WHOLESALE TERMS =================
 (() => {
   const s = pres.addSlide(); bg(s, WHITE);
-  kicker(s, "Wholesale Terms", M, M, false); pageNo(s,9,false);
+  kicker(s, "Wholesale Terms", M, M, false); pageNo(s,10,false);
   s.addText("Simple terms to get started.", { x:M, y:1.2, w:11.5, h:0.7, fontFace:HEAD, fontSize:34, color:TXT });
   const items = [
     ["MOQ","Bulk: 1 kg   ·   Finished SKUs: 3 cases (opening order)"],
@@ -311,7 +355,7 @@ function ensoCircle(slide, x, y, d, bgc, strokeColor, width){
 // ================= P10 — PROOF & TRACTION =================
 (() => {
   const s = pres.addSlide(); bg(s, PAPER);
-  kicker(s, "Proof & Traction", M, M, false); pageNo(s,10,false);
+  kicker(s, "Proof & Traction", M, M, false); pageNo(s,11,false);
   s.addText("Already trusted by customers\nacross markets.", { x:M, y:1.2, w:11, h:1.3, fontFace:HEAD, fontSize:32, color:TXT, lineSpacingMultiple:1.02 });
   const stats = [
     ["Live","on Amazon US — selling to US consumers today"],
@@ -332,7 +376,7 @@ function ensoCircle(slide, x, y, d, bgc, strokeColor, width){
 // ================= P11 — PARTNERSHIP PROCESS =================
 (() => {
   const s = pres.addSlide(); bg(s, WHITE);
-  kicker(s, "Partnership Process", M, M, false); pageNo(s,11,false);
+  kicker(s, "Partnership Process", M, M, false); pageNo(s,12,false);
   s.addText("From first sample to first order — in four steps.", { x:M, y:1.2, w:11.5, h:0.7, fontFace:HEAD, fontSize:30, color:TXT });
   const steps=[
     ["Inquiry","Tell us your format (café or retail) and expected volume."],

@@ -73,7 +73,30 @@
 
 ---
 
-## P04 — Quality & Craft
+## P04 — Where is Shizuoka?  ※新規挿入（以降のページ番号は+1）
+
+**【目的】** 海外バイヤーへ静岡の位置と茶産地としての格を、地図と事実で証明する。
+
+**Headline（EN）**
+> Where is Shizuoka?
+
+**Subhead（EN）**
+> Japan’s most celebrated tea region — at the foot of Mt. Fuji.
+
+**Body（EN） — 4ファクト**
+> - **Central Japan, Pacific coast** — Between Tokyo and Kyoto, at the foot of Mt. Fuji — about 1.5 hours from Tokyo.
+> - **A heritage of tea** — One of Japan’s oldest and most renowned tea-growing regions, cultivated for centuries.
+> - **Ideal terroir** — Misty mountain slopes, a mild maritime climate, and well-drained volcanic soil.
+> - **A name buyers trust** — In Japan, “Shizuoka” is synonymous with quality tea.
+
+**【レイアウト・補足】**
+- 左：ロケーター図（富士山＋静岡マーカー＋Tokyo/Kyoto参照点）。当面は図形版、後日「上品なイラスト地図」画像に差し替え可（プロンプトは image_prompts.md）。
+- 右：4ファクトを円アイコン＋見出し＋本文で。
+- 正確性：「生産量No.1」は年により鹿児島が上回るため使わず、「最も有名な茶産地の一つ／日本茶の中心地」で統一。抹茶名産地（宇治等）には触れず、静岡産茶葉の信頼性・テロワールを軸に。
+
+---
+
+## P05 — Quality & Craft
 
 **【目的】** 品質の裏付けを示し、価格の高さを正当化する。
 
