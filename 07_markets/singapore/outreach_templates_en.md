@@ -30,7 +30,8 @@ I'm Hikaru, founder of SHIZUNE MATCHA — a single-origin ceremonial matcha
 from Shizuoka, Japan. We currently sell in the US (Amazon + our own site),
 and we're now bringing our wholesale supply to Singapore cafés.
 
-I loved that {Cafe} takes matcha seriously, so I thought I'd reach out.
+I understand {Cafe} serves matcha on your menu, so I wanted to introduce
+ours — a matcha that works well on both quality and cost.
 
 What we offer cafés:
 • Single-origin Shizuoka ceremonial matcha — smooth and clean, a natural green in milk
