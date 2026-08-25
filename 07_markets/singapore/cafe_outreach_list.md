@@ -31,11 +31,22 @@
 | 6 | **Kurasu Singapore** | 261 Waterloo Street #01-24 | **sg@kurasu.kyoto** ✅ | @kurasusg | kurasu.sg | 京都系スペシャルティ。※自社で抹茶も扱う→競合寄りだが対話価値あり |
 | 7 | **Calligraph Coffee** | DUO Galleria #01-57, 7 Fraser St 189356 | 要問合せ（サイト/Tel） | @calligraphcoffee | calligraphcoffee.com / Tel 6386 6865 | ceremonial抹茶を日本から直輸入。品質志向 |
 | 8 | **KYŌ KOHEE** | 112 Robinson #01-01 ／ Asia Square T1 ／ Labrador Tower ／ Chinatown 18 Cross St ／ Bugis | 要問合せ（サイト/DM） | @kyokohee（要確認） | kyokohee.com | 抹茶バー・多店舗。3種ceremonial扱い→やや競合寄りだが高品質志向で対話価値 |
+| 9 | **Cafe Yasuragi** | Millenia Walk #01-93/94, 9 Raffles Blvd 039596 | 要問合せ（サイト/DM） | @cafeyasuragi | cafeyasuragi.com | 和風×スペシャルティ。現在Tsujiri抹茶を外部調達→切替提案の余地あり |
+| 10 | **Little Glass**（by Glass Roasters） | 61 Seng Poh Ln #01-01（Tiong Bahru）／CIMB Plaza／one-north Fusionopolis | 要問合せ（DM） | @littleglassstand（親: @glassroasters） | — | ceremonial（Yabukita/Samidori等）を外部調達。品質志向・独立系。良ターゲット |
 
 **確定メール（今すぐ送れる）**: Hello Arigato `info@helloarigato.com` ／ Kurasu `sg@kurasu.kyoto`
 **その他6店**: 公式サイトの問い合わせフォーム or IG DM が確実（サイトが社内プロキシでブロックされメール直取得は未完。送信前に各サイトのContactを一度確認）
 
 **Hello Arigato 各店直通電話**（本部メールが優先だが参考）: Upper Thomson +65 8772 3778／Joo Chiat +65 8889 5657／Everton Park +65 8308 0103／Bukit Timah +65 8512 1355／Tiong Bahru(Seng Poh) +65 8027 2558
+
+## 優先度A候補：スペシャルティ系（抹茶ラテ提供を要確認 → 有れば優先度A級）
+
+| # | Café | エリア / 店舗 | IG | Web | メモ |
+|---|------|--------------|----|-----|------|
+| 11 | **Common Man Coffee Roasters** | Martin Road ほか | @commonmancoffeeroasters | commonmancoffeeroasters.com | 大型ロースター兼**卸業者**。抹茶提供の有無を要確認。窓口が明確で商談しやすい |
+| 12 | **Nylon Coffee Roasters** | 4 Everton Park #01-40 | @nyloncoffee | — | 有名スペシャルティ。抹茶提供を要確認 |
+| 13 | **Foreword Coffee** | 多店舗（社会的企業） | @forewordcoffee | — | 多店舗＝数量見込み。抹茶提供を要確認 |
+| 14 | **Baristart Coffee** | Tras St ほか | @baristartsg（要確認） | — | 北海道ミルク系・和カフェ。抹茶提供を要確認 |
 
 ## 優先度B：抹茶ブランド専門店（低優先・競合寄り）
 
@@ -47,11 +58,12 @@
 | 12 | Nana's Green Tea | SG（要確認） | 日系抹茶カフェチェーン |
 | 13 | 108 Matcha Saro | SG（要確認） | 北海道ソフト系 |
 | 14 | Maccha House | SG（要確認） | 日系抹茶チェーン |
-| 15 | Warabimochi Kamakura | SG（要確認） | わらび餅・抹茶スイーツ |
+| 15 | Warabimochi Kamakura | Holland Village / Taste Orchard / Takashimaya | わらび餅・抹茶スイーツ |
+| 16 | Top Quali Tea Kyoto | Leisure Park Kallang / Oxley Tower | 宇治一番茶の自社ブランド。競合色強い |
 
-## 候補（未確認・要リサーチ）
+## その他の候補（さらに広げる場合）
 
-- Common Man Coffee Roasters／PPP Coffee (Papa Palheta)／Apartment Coffee — 大型ロースター・独立系。抹茶ラテ提供の有無と連絡先を要確認（有れば優先度A級）
+- PPP Coffee (Papa Palheta)／Apartment Coffee／Kki Sweets／% Arabica（Arab St）等 — 抹茶提供の有無・連絡先を要確認
 
 ---
 
