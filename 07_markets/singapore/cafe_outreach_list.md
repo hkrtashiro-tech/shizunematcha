@@ -21,16 +21,21 @@
 
 ## 優先度A：独立系スペシャルティカフェ（最優先）
 
-| # | Café | エリア / 店舗 | メモ（適合理由） | 連絡導線 |
-|---|------|--------------|----------------|----------|
-| 1 | **Hello Arigato** | Upper Thomson / Joo Chiat / Everton Park / Bukit Timah / Tiong Bahru（多店舗） | 和風カフェ。多店舗＝数量見込み大。抹茶ラテ提供 | FB: helloarigato.official／各店IG |
-| 2 | **Koffee Kollective** | 57 New Upper Changi Rd #01-1340 | 「本格抹茶を近隣価格で」。独立系・堅実 | IG/店頭で確認 |
-| 3 | **VOLKS Coffee Co.** | SG（要確認） | スペシャルティ。抹茶ラテ提供 | IG/サイトで確認 |
-| 4 | **Haus Coffee** | SG（要確認） | 話題のスイーツ＋抹茶。SNS強い | IG/サイトで確認 |
-| 5 | **Cheeky Cuppas** | 24 Sin Ming Road #01-47A | Kyoto Mukashi ceremonial使用。独立系 | IG/店頭で確認 |
-| 6 | **Kurasu Singapore** | 261 Waterloo Street #01-24 | 京都系スペシャルティ。※自社で抹茶も扱う→競合寄りだが対話価値あり | IG: kurasu.singapore |
-| 7 | **Calligraph Coffee** | DUO Galleria（Bugis） | ceremonial抹茶を日本から直輸入。品質志向 | IG/サイトで確認 |
-| 8 | **KYŌ KOHEE** | 112 Robinson ＋ Asia Square Tower 1（kiosk） | 抹茶バー。3種のceremonial扱い→やや競合寄り、但し高品質志向で対話価値 | IG/サイトで確認 |
+| # | Café | エリア / 店舗 | Email | IG | Web / Tel | 適合メモ |
+|---|------|--------------|-------|----|-----------|---------|
+| 1 | **Hello Arigato** | Upper Thomson / Joo Chiat / Everton Park / Bukit Timah / Tiong Bahru（5店舗） | **info@helloarigato.com** ✅ | @helloarigato.official | helloarigato.com | 多店舗＝数量見込み大。まず本部メールへ |
+| 2 | **Koffee Kollective** | 57 New Upper Changi Rd #01-1340 | 要問合せ（サイト/DM） | @koffeekollectivesg | koffeekollectivesg.com | 「本格抹茶を近隣価格で」。独立系・堅実 |
+| 3 | **VOLKS** | One Raffles Quay / Marina Bay Link Mall | 要問合せ（サイト/DM） | @volks.sg | volks.co | 「Coffee. Matcha. Cocktails.」抹茶明確。※別店 "Volks Coffee Co." @volkscoffeeco (The Sail, Tel 9223 0245) と混同注意 |
+| 4 | **Haus Coffee** | 6001 Beach Road #01-57 Golden Mile Tower 199589 | 要問合せ（DM） | @hauscoffeesg | — | 話題のバナナプディング抹茶。SNS強い。連絡はIG DM |
+| 5 | **Cheeky Cuppas** | 24 Sin Ming Road #01-47A 570024 | 要問合せ（DM） | @cheeky.cuppas | FB: cheekycuppas | Kyoto Mukashi ceremonial使用。独立系 |
+| 6 | **Kurasu Singapore** | 261 Waterloo Street #01-24 | **sg@kurasu.kyoto** ✅ | @kurasusg | kurasu.sg | 京都系スペシャルティ。※自社で抹茶も扱う→競合寄りだが対話価値あり |
+| 7 | **Calligraph Coffee** | DUO Galleria #01-57, 7 Fraser St 189356 | 要問合せ（サイト/Tel） | @calligraphcoffee | calligraphcoffee.com / Tel 6386 6865 | ceremonial抹茶を日本から直輸入。品質志向 |
+| 8 | **KYŌ KOHEE** | 112 Robinson #01-01 ／ Asia Square T1 ／ Labrador Tower ／ Chinatown 18 Cross St ／ Bugis | 要問合せ（サイト/DM） | @kyokohee（要確認） | kyokohee.com | 抹茶バー・多店舗。3種ceremonial扱い→やや競合寄りだが高品質志向で対話価値 |
+
+**確定メール（今すぐ送れる）**: Hello Arigato `info@helloarigato.com` ／ Kurasu `sg@kurasu.kyoto`
+**その他6店**: 公式サイトの問い合わせフォーム or IG DM が確実（サイトが社内プロキシでブロックされメール直取得は未完。送信前に各サイトのContactを一度確認）
+
+**Hello Arigato 各店直通電話**（本部メールが優先だが参考）: Upper Thomson +65 8772 3778／Joo Chiat +65 8889 5657／Everton Park +65 8308 0103／Bukit Timah +65 8512 1355／Tiong Bahru(Seng Poh) +65 8027 2558
 
 ## 優先度B：抹茶ブランド専門店（低優先・競合寄り）
 
