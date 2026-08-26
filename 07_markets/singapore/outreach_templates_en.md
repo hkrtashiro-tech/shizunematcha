@@ -54,17 +54,18 @@ Hikaru
 
 ```
 Hi {Cafe} 👋 I'm Hikaru, founder of SHIZUNE MATCHA — single-origin
-ceremonial matcha from Shizuoka, Japan (we sell in the US, now opening
-wholesale to SG cafés).
+ceremonial matcha from Shizuoka, Japan. We supply cafés wholesale (bulk by
+the kg, from S$91/kg), and we're now opening up in Singapore.
 
-Your matcha drinks look great — could I send you a free sample to try?
-No obligation, just love your feedback. 🍵
+Since you serve matcha, could I send a free sample for your team to try?
+No obligation 🍵
 ```
 
 **さらに短い版（フォロー直後など）**
 ```
-Hi {Cafe}! Single-origin Shizuoka ceremonial matcha, now wholesale in SG
-(from S$91/kg). Can I send a free sample for your matcha latte? 🍵
+Hi {Cafe}! We wholesale single-origin Shizuoka ceremonial matcha to cafés
+(bulk, from S$91/kg), now in Singapore. Since you serve matcha, could I send
+a free wholesale sample to try? 🍵
 ```
 
 ---
