@@ -44,6 +44,19 @@
 | 9 | Maruwu Seicha | Waikiki | 日本茶ブランド |
 | 10 | Nana's Green Tea | Stix Asia（Waikiki） | 日系チェーン |
 
+## 追加候補（オアフ・要連絡先確認／有れば優先度A級）
+
+| # | Café | エリア | IG | Web | メモ |
+|---|------|--------|----|-----|------|
+| 11 | **Cowrie Coffee** | 324 Kapahulu Ave, Honolulu ／ Aiea ／ farmers markets | @cowriecoffee | cowriecoffee.square.site | ヘルス志向の島焙煎。抹茶提供。独立系＝好機 |
+| 12 | **Cooke Street Market** | 725 Kapiolani Blvd（Kaka'ako） | @cookestreetmarket | csmhawaii.com | 名物ストロベリー抹茶ラテ。Kaka'akoの人気店 |
+| 13 | **Morning Glass Coffee** | 2955 E Manoa Rd（Manoa） | @morningglasscoffee | morningglasscoffee.square.site | 老舗ネイバーフッド。抹茶ソーダ等。独立系 |
+| 14 | **Aloha Matcha Hawaii** | Kaka'ako／Ala Moana ほかポップアップ | @aloha.matcha.hi | — | 抹茶＆ほうじ茶専門（自社調達）→やや競合寄りだが対話価値 |
+| 15 | **Pua Blooms** | Kaka'ako（ポップアップ） | 要確認 | — | 点て立て抹茶。小規模だが感度高 |
+| 16 | **Kai Coffee Hawaii** | Waikiki 多店舗 | @kaicoffeehawaii | kaicoffeehawaii.com | 多店舗＝数量見込み。抹茶提供を要確認 |
+| 17 | **ARS Cafe** | 3116 Monsarrat Ave（Diamond Head） | @arscafe | — | ジェラート＋コーヒー。抹茶提供を要確認 |
+| 18 | **Dean & DeLuca Hawaii** | Ritz-Carlton Residences, Waikiki | @deandelucahawaii（要確認） | — | 高級・準チェーン。抹茶提供あり。優先度は低め |
+
 ---
 
 ## 連絡先の埋め方
