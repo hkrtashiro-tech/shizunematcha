@@ -65,6 +65,55 @@
 
 ---
 
+## マウイ島（Maui）候補 10店
+
+| # | Café | エリア | IG | メモ |
+|---|------|--------|----|------|
+| M1 | **Maui Matcha** | Lahaina（Westin Nanea）／Wailea | @mauimatcha | 抹茶専門・organic ceremonial。一部店舗休業情報あり→営業要確認 |
+| M2 | **Akamai Coffee Co.** | Kihei／Wailea／Kahului（多店舗） | @akamaicoffee | 100%マウイ珈琲・抹茶ラテ提供 |
+| M3 | **Choice Health Bar** | Ka'anapali／Paia | @choicehealthbar | アイス抹茶（Maui Matcha使用）・ヘルス系 |
+| M4 | **Sip Me Maui** | Makawao（Baldwin Ave） | @sipmemaui（要確認） | アップカントリー定番・抹茶要確認 |
+| M5 | **Wailuku Coffee Company** | Wailuku（Market St） | @wailukucoffeeco（要確認） | 家族経営・抹茶要確認 |
+| M6 | **Crema Maui**（at Marlow） | Pukalani | 要確認 | モダン珈琲・抹茶要確認 |
+| M7 | **Paia Bay Coffee** | Paia | @paiabaycoffee（要確認） | ビーチ隣接・抹茶要確認 |
+| M8 | **Anthony's Coffee Co.** | Paia | @anthonyscoffeeco（要確認） | 老舗ロースター・抹茶要確認 |
+| M9 | **Maui Coffee Roasters** | Kahului | @mauicoffeeroasters（要確認） | ロースター・抹茶要確認 |
+| M10 | **Espresso Mafia** | Makawao | 要確認 | 抹茶ラテ提供 |
+
+## カウアイ島（Kauai）候補 10店
+
+| # | Café | エリア | IG | メモ |
+|---|------|--------|----|------|
+| K1 | **Java Kai** | Kapaa／Hanalei／Poipu／Princeville／Lihue（多店舗） | @javakai | ストロベリー抹茶等・多店舗＝数量 |
+| K2 | **Little Fish Coffee** | Poipu（・Kapaa） | @littlefishcoffee | 南岸人気・抹茶 |
+| K3 | **Kalaheo Café & Coffee Co.** | Kalaheo | @kalaheocoffee（要確認） | ラベンダー抹茶 |
+| K4 | **Small Town Coffee** | Kapaa | @smalltowncoffeeco（要確認） | Kapaaの人気店 |
+| K5 | **Hanalei Bread Company** | Hanalei | @hanaleibread（要確認） | マンゴー抹茶（季節） |
+| K6 | **Wishing Well** | Hanalei | @wishingwellshaveice（要確認） | アイス抹茶「Lili's Fav」 |
+| K7 | **The Spot North Shore** | Princeville | 要確認 | 北岸ブランチ・抹茶要確認 |
+| K8 | **Kauai Coffee Company** | Kalaheo | @kauaicoffeeco | 大手農園カフェ・抹茶要確認 |
+| K9 | **Ha Coffee Bar** | Lihue | @hacoffeebar（要確認） | Lihue人気カフェ・抹茶要確認 |
+| K10 | **Trilogy Coffee** | Kapaa | @trilogycoffeekauai（要確認） | 抹茶要確認 |
+
+## ハワイ島（Big Island）候補 10店
+
+| # | Café | エリア | IG | メモ |
+|---|------|--------|----|------|
+| H1 | **Kona Coffee & Tea** | Kailua-Kona（Palani Rd） | @konacoffeeandtea | 農園カフェ・tea扱い・抹茶要確認 |
+| H2 | **Journey Cafe Big Island** | Kailua-Kona | @journeycafebigisland（要確認） | アイス抹茶ラテ提供 |
+| H3 | **Big Island Coffee Roasters** | Hilo／Hakalau | @bigislandcoffeeroasters | 抹茶ラテ提供 |
+| H4 | **Hilo Coffee Mill** | Mountain View／Hilo | @hilocoffeemill（要確認） | 抹茶要確認 |
+| H5 | **Kope Lani** | Kailua-Kona（Kailua Bay） | 要確認 | アイスラテ人気・抹茶要確認 |
+| H6 | **Waimea Coffee Company** | Waimea | @waimeacoffeecompany（要確認） | 町の定番・抹茶要確認 |
+| H7 | **Papa Kona**（ex-Daylight Mind） | Kailua-Kona | 要確認 | 眺望カフェ・抹茶要確認 |
+| H8 | **Kona Haven Coffee** | Kailua-Kona | @konahavencoffee（要確認） | 抹茶要確認 |
+| H9 | **Basik Cafe** | Kailua-Kona | @basikacai（要確認） | açaí＋抹茶ボウル・要確認 |
+| H10 | **Sirius Coffee Connection** | Kailua-Kona | 要確認 | 抹茶要確認 |
+
+> ネイバーアイランドは**要確認が多め**（IG・抹茶提供）。送信前に各店を必ずチェック。多店舗（Java Kai / Akamai / Kona Coffee & Tea）は数量見込みで優先度高め。
+
+---
+
 ## 連絡先の埋め方
 - メール直取得はカフェ各サイトが取得制限のため未完。**各IG DM or 公式サイトのContactフォーム**が確実
 - Daily Whisk はサイトにContactページ有り／電話(808) 490-3436
