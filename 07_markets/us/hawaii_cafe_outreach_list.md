@@ -56,6 +56,12 @@
 | 16 | **Kai Coffee Hawaii** | Waikiki 多店舗 | @kaicoffeehawaii | kaicoffeehawaii.com | 多店舗＝数量見込み。抹茶提供を要確認 |
 | 17 | **ARS Cafe** | 3116 Monsarrat Ave（Diamond Head） | @arscafe | — | ジェラート＋コーヒー。抹茶提供を要確認 |
 | 18 | **Dean & DeLuca Hawaii** | Ritz-Carlton Residences, Waikiki | @deandelucahawaii（要確認） | — | 高級・準チェーン。抹茶提供あり。優先度は低め |
+| 19 | **The Curb Kaimuki** | Kaimuki | @thecurbkaimuki | — | スペシャルティ珈琲。パンダン抹茶ラテ等・独立系 |
+| 20 | **Cha to Gelato Zen** | 744 Kapahulu Ave, Honolulu | @cha_to_gelato_zen | — | 抹茶＆ジェラート。点て立て抹茶。和テイスト |
+| 21 | **Arvo Cafe** | Kaka'ako（Paiko）／Waikiki（Surfjack: @arvo_surfjack） | @a_r_v_o | arvocafe.com | 映えるブランチカフェ・多店舗。抹茶提供 |
+| 22 | **DEVOS Hawaiʻi** | ʻEwa（抹茶ポップアップ） | 要確認（devos系） | — | 新興の抹茶ポップアップ。感度高・小規模 |
+| 23 | **Morning Brew Hawaii** | Kailua／Kaka'ako（多店舗） | @morningbrewhawaii | morningbrewhawaii.com | 地元珈琲チェーン。多店舗＝数量。抹茶提供を要確認 |
+| 24 | **Lotus Cafe** | Kaimuki | @lotuskaimuki | — | ネイバーフッドカフェ。抹茶提供を要確認 |
 
 ---
 
